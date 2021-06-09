@@ -6,6 +6,6 @@
     </x-slot>
 
 
-                <x-jet-welcome />
+    <x-jet-welcome />
             
 </x-app-layout>

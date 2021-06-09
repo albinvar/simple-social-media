@@ -19,7 +19,7 @@
 
             <div class="mt-4">
                 <x-jet-label for="body" value="{{ __('Description') }}" />
-               <textarea rows="5" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow"> </textarea>
+               <textarea rows="5" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow" name="body"> </textarea>
             </div>
             
             <div class="flex items-center justify-end mt-4">

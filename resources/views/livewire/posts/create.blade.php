@@ -16,10 +16,25 @@
                <textarea rows="5" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow" wire:model="body"> </textarea>
             </div>
             
+            @if ($photo)
             <div class="mt-4">
-                <x-jet-label for="body" value="{{ __('Description') }}" />
+                <x-jet-label value="{{ __('Image Preview :') }}" />
+               <img class="p-3 h-32" src="{{ $photo->temporaryUrl() }}">
+            </div>
+            @endif
+            
+            
+
+	        
+	    
+            
+            
+            <div class="mt-4">
+                <x-jet-label for="body" value="{{ __('Image') }}" />
                <input type="file" wire:model="photo">
             </div>
+            
+            <div wire:loading class="my-3"  wire:target="photo">Uploading...</div>
             
             <div class="flex items-center justify-end mt-4">
 

@@ -13,7 +13,7 @@ class View extends Component
 	
     public function render()
     {
-    	$this->posts = Post::all();
+    	$this->posts = Post::latest()->get();
         return view('livewire.posts.view');
     }
 }

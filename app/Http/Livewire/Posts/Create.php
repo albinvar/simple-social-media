@@ -24,6 +24,13 @@ class Create extends Component
 	        ];
 	
 	
+	public function updatedPhoto()
+    {
+        $this->validate([
+            'photo' => 'image|max:1024',
+        ]);
+    }
+	
 	public function submit()
 	{
 		$data = $this->validate();
@@ -34,13 +41,14 @@ class Create extends Component
 			'body' => $data['body'],
 		]);
 		
-		$path = $this->photo->store('public/post-photos');
+		$path = $this->photo->store('post-photos', 'public');
 		
 		$media = Media::create([
 			'post_id' => $post->id,
 			'path' => $path,
 			'is_image' => true,
 		]);
+		
 		session()->flash('success', 'Post created successfully');
 		
 		return redirect('dashboard');

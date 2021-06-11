@@ -2,19 +2,20 @@
 	
 	@forelse($posts as $post)
     <div class="flex flex-col my-5">
-    	{{ dd($post->postMedias) }}
             <div class="bg-white shadow-md  rounded-3xl p-4">
                 <div class="flex-none lg:flex">
                     <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
-                        <img src="{{ $post->medias->first() }}"
-                            alt="Just a flower" class=" w-full  object-scale-down lg:object-cover  lg:h-48 rounded-2xl">
+                    	@foreach($post->postImages as $image)
+                        <img src="{{ url('/storage/' . $image->path) }}"
+                            alt="Social" class=" w-full  object-scale-down lg:object-cover  lg:h-48 rounded-2xl">
+                        @endforeach
                     </div>
                     <div class="flex-auto ml-3 justify-evenly py-2">
                         <div class="flex flex-wrap ">
                             <div class="w-full flex-none text-xs text-blue-700 font-medium ">
-                                {{ $post->title }}
+                                category
                             </div>
-                            <h2 class="flex-auto text-lg font-medium">Massive Dynamic</h2>
+                            <h2 class="flex-auto text-lg font-medium">{{ $post->title }}</h2>
                         </div>
                         <p class="mt-3">{{ $post->body }}</p>
                         <div class="flex py-4  text-sm text-gray-600">
@@ -27,9 +28,16 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                 </svg>
-                                <p class="float-right text-right">{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</p>
+                                <p class="">Mumbai,MH</p>
                             </div>
-                            
+                            <div class="flex-1 inline-flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <p class="">{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</p>
+                            </div>
                         </div>
                         <div class="flex p-4 pb-2 border-t border-gray-200 "></div>
                         <div class="flex space-x-3 text-sm font-medium">

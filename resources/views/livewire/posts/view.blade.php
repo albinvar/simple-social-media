@@ -2,10 +2,11 @@
 	
 	@forelse($posts as $post)
     <div class="flex flex-col my-5">
+    	{{ dd($post->postMedias) }}
             <div class="bg-white shadow-md  rounded-3xl p-4">
                 <div class="flex-none lg:flex">
                     <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
-                        <img src="https://images.unsplash.com/photo-1622180203374-9524a54b734d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80"
+                        <img src="{{ $post->medias->first() }}"
                             alt="Just a flower" class=" w-full  object-scale-down lg:object-cover  lg:h-48 rounded-2xl">
                     </div>
                     <div class="flex-auto ml-3 justify-evenly py-2">
@@ -26,7 +27,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                 </svg>
-                                <p class="">test </p>
+                                <p class="float-right text-right">{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</p>
                             </div>
                             
                         </div>

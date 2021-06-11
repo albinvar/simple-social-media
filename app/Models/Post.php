@@ -19,4 +19,9 @@ class Post extends Model
         'title',
         'body',
     ];
+    
+    public function postImages()
+    {
+        return $this->hasMany(Media::class);
+    }
 }

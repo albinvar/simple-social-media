@@ -20,4 +20,10 @@ class Media extends Model
         'is_image',
     ];
     
+    
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
+    
 }

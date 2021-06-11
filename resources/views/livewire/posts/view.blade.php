@@ -63,4 +63,6 @@
         @empty
         No Posts
         @endforelse
+        
+        {{ $posts->links() }}
 </div>

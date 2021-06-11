@@ -62,6 +62,7 @@
                             </div>
                             <button
                                 class="mb-2 md:mb-0 bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
+                                wire:click="comments({{ $post->id }})"
                                 type="button" aria-label="like">Comment</button>
                         </div>
                     </div>
@@ -91,4 +92,72 @@
         @endforelse
         
         {{ $posts->links() }}
+        
+       
+         <!-- Delete User Confirmation Modal -->
+        <x-jet-dialog-modal wire:model="isOpenCommentModal">
+            <x-slot name="title">
+                {{ __('Comments') }}
+            </x-slot>
+
+            <x-slot name="content">
+            
+            @forelse($comments as $comment)
+			<div class="flex  space-x-2">
+                <div class="block">
+                  <div class="bg-gray-100 w-auto rounded-xl px-2 pb-2">
+                    <div class="font-medium">
+                      <a href="#" class="hover:underline text-sm">
+                        <span class="text-xs font-semibold">Hasan Muhammad</span>
+                      </a>
+                    </div>
+                    <div class="text-xs">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita, maiores!
+                    </div>
+                  </div>
+                  <div class="flex justify-start items-center text-xs w-full">
+                    <div class="font-semibold text-gray-700 px-2 flex items-center justify-center space-x-1">
+                      <a href="#" class="hover:underline">
+                        <small>Like</small>
+                      </a>
+                    <small class="self-center">.</small>
+                      <a href="#" class="hover:underline">
+                        <small>Reply</small>
+                      </a>
+                    <small class="self-center">.</small>
+                      <a href="#" class="hover:underline">
+                        <small>15 hour</small>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              @empty
+              
+              @endforelse
+              <form wire:submit.prevent="createComment({{ $postId }})" >
+                <div class="mt-4" >
+                    <x-jet-input type="text" class="mt-1 block" wire:model="comment"
+                                placeholder="{{ __('Your comment') }}"
+                                />
+
+                    <x-jet-input-error for="comment" class="mt-2" />
+                </div>
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$toggle('isOpenCommentModal')" wire:loading.attr="disabled">
+                    {{ __('Cancel') }}
+                </x-jet-secondary-button>
+
+                <x-jet-button class="ml-2" wire:loading.attr="disabled">
+                    {{ __('Post Comment') }}
+                </x-jet-button>
+                </form>
+            </x-slot>
+        </x-jet-dialog-modal>
+
+        
+        
 </div>

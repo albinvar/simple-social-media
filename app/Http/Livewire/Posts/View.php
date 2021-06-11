@@ -49,11 +49,10 @@ class View extends Component
     
     public function comments(Post $post)
     {
-    	$this->comment = '';
 		$this->postId = $post->id;
-	    
+	    $this->resetValidation('comment');
     	$this->isOpenCommentModal = true;
-	    $this->comments = $post->comments;
+	    $this->setComments($post);
 		return true;
     }
     
@@ -62,7 +61,7 @@ class View extends Component
      *
      * @var array
      */
-    public function createComment($id)
+    public function createComment(Post $post)
     {
     	$validatedData = Validator::make(
             ['comment' => $this->comment],
@@ -71,27 +70,24 @@ class View extends Component
         
 	    Comment::create([
 			'user_id' => Auth::id(),
-			'post_id' => $this->postId,
+			'post_id' => $post->id,
 			'comment' => $validatedData['comment'],
 		]);
 		
-		$this->resetValidation('comment');
-		$this->isOpenCommentModal = false;
+		session()->flash('comment.success', 'Comment created successfully');
+		
+		$this->setComments($post);
+		$this->comment = '';
+		
+		//$this->isOpenCommentModal = false;
 		return redirect()->back();
 	
     }
   
     
-    public function openModal()
+    public function setComments($post)
     {
-        $this->isOpen = true;
-    }
-  
-    
-    public function closeModal()
-    {
-        $this->isOpen = false;
-    }
-  
+        $this->comments = $post->comments;
+    }  
     
 }

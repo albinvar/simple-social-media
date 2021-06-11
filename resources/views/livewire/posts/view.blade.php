@@ -1,4 +1,9 @@
 <div>
+	@if(session()->has('success'))
+<div class="bg-green-100 border my-3 border-green-400 text-green-700 dark:bg-green-700 dark:border-green-600 dark:text-green-100 px-4 py-3 rounded relative" role="alert">
+  <span class="block sm:inline text-center">{{ session()->get('success') }}</span>
+</div>
+@endif
 	@forelse($posts as $post)
     <div class="flex flex-col my-5">
             <div class="bg-white shadow-md  rounded-3xl p-4">
@@ -63,7 +68,7 @@
                             <button
                                 class="mb-2 md:mb-0 bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
                                 wire:click="comments({{ $post->id }})"
-                                type="button" aria-label="like">Comment</button>
+                                type="button" aria-label="like">{{ $post->comments->count() }} Comments</button>
                         </div>
                     </div>
                 </div>
@@ -102,12 +107,17 @@
 
             <x-slot name="content">
             
+            @if(session()->has('comment.success'))
+            <div class="bg-green-100 border my-3 border-green-400 text-green-700 dark:bg-green-700 dark:border-green-600 dark:text-green-100 px-4 py-3 rounded relative" role="alert">
+				  <span class="block sm:inline text-center">{{ session()->get('comment.success') }}</span>
+			</div>
+            @endif
+            
             <form wire:submit.prevent="createComment({{ $postId }})" >
                 <div class="mt-4" >
-                    <x-jet-input type="text" class="mt-1 block" wire:model="comment"
+                    <textarea class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block" wire:model="comment"
                                 placeholder="{{ __('Your comment') }}"
-                                />
-
+                                /> </textarea>
                     <x-jet-input-error for="comment" class="mt-2" />
                 </div>
             </x-slot>
@@ -155,7 +165,7 @@
                 </div>
               </div>
               @empty
-              No Comments found
+		             No Comments found
               @endforelse
               </x-slot>
         </x-jet-dialog-modal>

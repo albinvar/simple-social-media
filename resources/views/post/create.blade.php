@@ -4,7 +4,7 @@
             {{ __('Create Post') }}
         </h2>
     </x-slot>
-    
+   
 	@livewire('posts.create')
 	
 	</x-app-layout>

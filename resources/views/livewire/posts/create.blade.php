@@ -5,7 +5,7 @@
 
         <form method="POST" wire:submit.prevent="submit" >
             @csrf
-
+            
             <div>
                 <x-jet-label for="title" value="{{ __('Title') }}" />
                 <x-jet-input id="title" class="block mt-1 w-full" type="text" wire:model="title" required/>

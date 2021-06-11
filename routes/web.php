@@ -23,5 +23,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 		return view('dashboard');
 		})->name('dashboard');
 		
-	Route::resource('/posts', "App\Http\Controllers\PostController")->name('*', 'post');
+	Route::resource('/posts', "App\Http\Controllers\PostController")->name('*', 'posts');
+	Route::get('/manage/posts', "App\Http\Controllers\PostController@show")->name('posts.manage');
 });

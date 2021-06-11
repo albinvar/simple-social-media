@@ -15,10 +15,13 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                
                     <x-jet-nav-link href="{{ route('posts.create') }}" :active="request()->routeIs('posts.create')">
                         {{ __('Create Post') }}
+                    </x-jet-nav-link>
+                    
+                    <x-jet-nav-link href="{{ route('posts.manage') }}" :active="request()->routeIs('posts.manage')">
+                        {{ __('Manage Posts') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -149,6 +152,10 @@
             
             <x-jet-responsive-nav-link href="{{ route('posts.create') }}" :active="request()->routeIs('posts.create')">
                 {{ __('Create post') }}
+            </x-jet-responsive-nav-link>
+            
+            <x-jet-responsive-nav-link href="{{ route('posts.manage') }}">
+                {{ __('Manage Posts') }}
             </x-jet-responsive-nav-link>
         </div>
 

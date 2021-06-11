@@ -1,5 +1,4 @@
 <div>
-	
 	@forelse($posts as $post)
     <div class="flex flex-col my-5">
             <div class="bg-white shadow-md  rounded-3xl p-4">
@@ -7,13 +6,13 @@
                     <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
                     	@foreach($post->postImages as $image)
                         <img src="{{ url('/storage/' . $image->path) }}"
-                            alt="Social" class=" w-full  object-scale-down lg:object-cover  lg:h-48 rounded-2xl">
+                            alt="Social" class=" w-full  object-scale-down lg:object-cover  lg:h-48 rounded-2xl" onContextMenu="return false;">
                         @endforeach
                     </div>
                     <div class="flex-auto ml-3 justify-evenly py-2">
                         <div class="flex flex-wrap ">
                             <div class="w-full flex-none text-xs text-blue-700 font-medium ">
-                                category
+                                Posted by {{ $post->user->name }}
                             </div>
                             <h2 class="flex-auto text-lg font-medium">{{ $post->title }}</h2>
                         </div>

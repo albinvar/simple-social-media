@@ -53,8 +53,8 @@ class View extends Component
 		$this->postId = $post->id;
 	    
     	$this->isOpenCommentModal = true;
-	    $this->comments = Comment::all();
-		
+	    $this->comments = $post->comments;
+		return true;
     }
     
     /**

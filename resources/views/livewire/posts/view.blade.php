@@ -125,16 +125,16 @@
             
             <x-slot name="comments">
             @forelse($comments as $comment)
-			<div class="flex space-x-2">
+			<div class="flex space-x-2 my-3">
                 <div class="block">
                   <div class="bg-gray-100 w-auto rounded-xl px-2 pb-2">
                     <div class="font-medium">
                       <a href="#" class="hover:underline text-sm">
-                        <span class="text-xs font-semibold">Hasan Muhammad</span>
+                        <span class="text-xs font-semibold">{{ $comment->user->name }}</span>
                       </a>
                     </div>
                     <div class="text-xs">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita, maiores!
+                      {{ $comment->comment }}
                     </div>
                   </div>
                   <div class="flex justify-start items-center text-xs w-full">
@@ -148,14 +148,14 @@
                       </a>
                     <small class="self-center">.</small>
                       <a href="#" class="hover:underline">
-                        <small>15 hour</small>
+                        <small>{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</small>
                       </a>
                     </div>
                   </div>
                 </div>
               </div>
               @empty
-              
+              No Comments found
               @endforelse
               </x-slot>
         </x-jet-dialog-modal>

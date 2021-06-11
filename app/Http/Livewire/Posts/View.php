@@ -75,9 +75,8 @@ class View extends Component
 			'comment' => $validatedData['comment'],
 		]);
 		
-		session()->flash('flash.banner', 'success');
 		$this->resetValidation('comment');
-		
+		$this->isOpenCommentModal = false;
 		return redirect()->back();
 	
     }

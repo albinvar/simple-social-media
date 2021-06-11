@@ -102,8 +102,30 @@
 
             <x-slot name="content">
             
+            <form wire:submit.prevent="createComment({{ $postId }})" >
+                <div class="mt-4" >
+                    <x-jet-input type="text" class="mt-1 block" wire:model="comment"
+                                placeholder="{{ __('Your comment') }}"
+                                />
+
+                    <x-jet-input-error for="comment" class="mt-2" />
+                </div>
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$toggle('isOpenCommentModal')" wire:loading.attr="disabled">
+                    {{ __('Cancel') }}
+                </x-jet-secondary-button>
+
+                <x-jet-button class="ml-2" wire:loading.attr="disabled">
+                    {{ __('Post Comment') }}
+                </x-jet-button>
+                </form>
+                </x-slot>
+            
+            <x-slot name="comments">
             @forelse($comments as $comment)
-			<div class="flex  space-x-2">
+			<div class="flex space-x-2">
                 <div class="block">
                   <div class="bg-gray-100 w-auto rounded-xl px-2 pb-2">
                     <div class="font-medium">
@@ -131,31 +153,11 @@
                     </div>
                   </div>
                 </div>
-
               </div>
               @empty
               
               @endforelse
-              <form wire:submit.prevent="createComment({{ $postId }})" >
-                <div class="mt-4" >
-                    <x-jet-input type="text" class="mt-1 block" wire:model="comment"
-                                placeholder="{{ __('Your comment') }}"
-                                />
-
-                    <x-jet-input-error for="comment" class="mt-2" />
-                </div>
-            </x-slot>
-
-            <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('isOpenCommentModal')" wire:loading.attr="disabled">
-                    {{ __('Cancel') }}
-                </x-jet-secondary-button>
-
-                <x-jet-button class="ml-2" wire:loading.attr="disabled">
-                    {{ __('Post Comment') }}
-                </x-jet-button>
-                </form>
-            </x-slot>
+              </x-slot>
         </x-jet-dialog-modal>
 
         

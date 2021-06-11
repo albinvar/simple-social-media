@@ -24,4 +24,15 @@ class Post extends Model
     {
         return $this->hasMany(Media::class);
     }
+    
+    public function likes()
+	{
+	    return $this->hasMany(Like::class);
+	}
+	
+	public function userLikes()
+	{
+	    return $this->hasMany(Like::class)->where('user_id', auth()->id());
+	}
+    
 }

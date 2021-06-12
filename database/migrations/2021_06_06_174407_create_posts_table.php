@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->string('title');
             $table->text('body');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,6 +30,8 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('posts', function (Blueprint $table) {
+			$table->dropSoftDeletes(); 
+		});
     }
 }

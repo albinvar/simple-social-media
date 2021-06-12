@@ -5,6 +5,6 @@
         </h2>
     </x-slot>
    
-	@livewire('posts.create')
+	<livewire:posts.create />
 	
-	</x-app-layout>
+</x-app-layout>

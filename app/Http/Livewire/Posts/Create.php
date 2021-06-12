@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Post;
 use App\Models\Media;
+use Stevebauman\Location\Facades\Location;
 
 class Create extends Component
 {
@@ -25,6 +26,16 @@ class Create extends Component
 			 'body' => 'required|max:1000',
 			 'photo' => 'image|max:1024',
 	        ];
+	
+	public function mount()
+	{
+		$position = Location::get();
+		if ($position){
+			 $this->location = $position->cityName . '/' . $position->regionCode;
+		} else {
+			$this->location = null;
+		}
+	}
 	
 	
 	public function updatedPhoto()

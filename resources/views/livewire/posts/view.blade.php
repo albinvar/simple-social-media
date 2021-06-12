@@ -62,13 +62,13 @@
 									</svg>
                                     </span>
                                     @endif
-                                    <span>{{ $post->likes->count() }}</span>
+                                    <span>{{ $post->likes_count }}</span>
                                 </button>
                             </div>
                             <button
                                 class="mb-2 md:mb-0 bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
                                 wire:click="comments({{ $post->id }})"
-                                type="button" aria-label="like">{{ $post->comments->count() }} Comments</button>
+                                type="button" aria-label="like">{{ $post->comments_count }} Comments</button>
                         </div>
                     </div>
                 </div>
@@ -164,7 +164,8 @@
                   </div>
                 </div>
               </div>
-              @empty
+              
+@empty
 		             No Comments found
               @endforelse
               </x-slot>

@@ -26,11 +26,15 @@ class Manage extends Component
     {
     	$post->deleted_at = now();
 	    $post->save();
+		return "test";
     }
     
-    public function delete()
+    public function delete(Post $post)
     {
-    	
+    	$post->deleted_at = now();
+	    $post->save();
+		session()->flash('success', 'Post Deleted Successfully');
+		return redirect()->back();
     }
     
 }

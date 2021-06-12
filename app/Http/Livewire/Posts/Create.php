@@ -26,10 +26,17 @@ class Create extends Component
              'body' => 'required|max:1000',
              'photo' => 'image|max:1024',
             ];
+            
+    private function getIp()
+	{
+	    return file_get_contents("http://checkip.amazonaws.com/");
+	}
     
     public function mount()
     {
-        $position = Location::get();
+    	$ipAddress = str_replace("\n", "", $this->getIp());
+        $position = Location::get($ipAddress);
+        
         if ($position) {
             $this->location = $position->cityName . '/' . $position->regionCode;
         } else {

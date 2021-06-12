@@ -36,7 +36,7 @@ class PostController extends Controller
      */
     public function store(CreatePostRequest $request)
     {
-    	dd(37);
+        dd(37);
     }
 
     /**

@@ -25,5 +25,4 @@ class Media extends Model
     {
         return $this->belongsTo(Post::class);
     }
-    
 }

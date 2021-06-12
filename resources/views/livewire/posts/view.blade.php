@@ -153,9 +153,9 @@
                         <small>Like</small>
                       </a>
                     <small class="self-center">.</small>
-                      <a href="#" class="hover:underline">
-                        <small>Reply</small>
-                      </a>
+                      <button class="" wire:click="deleteComment({{ $post->id }}, {{ $comment->id }})">
+                        <small>Delete</small>
+                      </button>
                     <small class="self-center">.</small>
                       <a href="#" class="hover:underline">
                         <small>{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</small>

@@ -90,6 +90,16 @@ class View extends Component
     public function setComments($post)
     {
         $this->comments = $post->comments;
+        return true;
     }  
+    
+    
+    public function deleteComment(Post $post, Comment $comment)
+    {
+    	$comment->delete();
+        $this->isOpenCommentModal = false;
+    	session()->flash('success', 'Comment deleted successfully');
+	    return redirect()->back();
+    }
     
 }

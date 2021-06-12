@@ -32,7 +32,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                 </svg>
-                                <p class="">Mumbai,MH</p>
+                                <p class="">@if(!empty($post->location)) {{ $post->location }} @else Unknown @endif</p>
                             </div>
                             <div class="flex-1 inline-flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"

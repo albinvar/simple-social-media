@@ -7,4 +7,4 @@
    
 	<livewire:posts.create />
 	
-	</x-app-layout>
+</x-app-layout>

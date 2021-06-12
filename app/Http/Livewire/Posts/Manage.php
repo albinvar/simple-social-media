@@ -22,15 +22,12 @@ class Manage extends Component
         return view('livewire.posts.manage', ['posts' => $posts]);
     }
     
-    public function edit(Post $post)
-    {
-    	$post->deleted_at = now();
-	    $post->save();
-		return "test";
-    }
-    
     public function delete(Post $post)
     {
+    	if($post->user->id !== Auth::id())
+	    {
+			return abort(403);
+		}
     	$post->deleted_at = now();
 	    $post->save();
 		session()->flash('success', 'Post Deleted Successfully');

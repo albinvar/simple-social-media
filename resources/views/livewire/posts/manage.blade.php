@@ -45,14 +45,7 @@
                         </div>
                         <div class="flex p-4 pb-2 border-t border-gray-200 "></div>
                         <div class="flex space-x-3 text-sm font-medium">
-                            <div class="flex-auto flex space-x-3">
-                                <button
-                                    class="mb-2 md:mb-0 bg-blue-400 px-5 py-2 shadow-sm tracking-wider border text-white rounded-full hover:bg-blue-600 inline-flex items-center space-x-2 "
-                                    wire:click="edit({{ $post->id }})">
-                                    
-                                    <span>Edit</span>
-                                </button>
-                            </div>
+                            
                             
                             <button
                                 class="mb-2 md:mb-0 bg-red-400 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-red-600"

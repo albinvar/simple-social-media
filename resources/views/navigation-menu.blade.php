@@ -20,7 +20,7 @@
                         {{ __('Create Post') }}
                     </x-jet-nav-link>
                     
-                    <x-jet-nav-link href="{{ route('posts.manage') }}" :active="request()->routeIs('posts.manage')">
+                    <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
                         {{ __('Manage Posts') }}
                     </x-jet-nav-link>
                 </div>
@@ -154,7 +154,7 @@
                 {{ __('Create post') }}
             </x-jet-responsive-nav-link>
             
-            <x-jet-responsive-nav-link href="{{ route('posts.manage') }}">
+            <x-jet-responsive-nav-link href="{{ route('posts.index') }}">
                 {{ __('Manage Posts') }}
             </x-jet-responsive-nav-link>
         </div>

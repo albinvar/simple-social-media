@@ -16,9 +16,12 @@ class Create extends Component
 	public $body;
 
     public $photo;
+    
+    public $location;
 	
 	protected $rules = [
              'title' => 'required|max:250',
+             'location' => 'required|max:250',
 			 'body' => 'required|max:1000',
 			 'photo' => 'image|max:1024',
 	        ];
@@ -38,6 +41,7 @@ class Create extends Component
 		$post = Post::create([
 			'user_id' => auth()->id(),
 			'title' => $data['title'],
+			'location' => $data['location'],
 			'body' => $data['body'],
 		]);
 		

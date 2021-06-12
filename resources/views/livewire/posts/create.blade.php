@@ -8,12 +8,12 @@
             
             <div>
                 <x-jet-label for="title" value="{{ __('Title') }}" />
-                <x-jet-input id="title" class="block mt-1 mb-2 w-full" type="text" wire:model="title" required/>
+                <x-jet-input id="title" class="block mt-1 mb-2 w-full" type="text" wire:model="title" />
             </div>
             
             <div>
                 <x-jet-label for="location" value="{{ __('Location') }}" />
-                <x-jet-input id="location" class="block mt-1 w-full" type="text" wire:model="location" required/>
+                <x-jet-input id="location" class="block mt-1 w-full" type="text" wire:model="location" />
             </div>
 
             <div class="mt-4">

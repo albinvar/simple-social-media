@@ -96,6 +96,12 @@ class View extends Component
     
     public function deleteComment(Post $post, Comment $comment)
     {
+    	if($comment->user->id !== auth()->id())
+	    {
+			session()->flash('comment.error', 'You can only delete your comments.');
+			return redirect()->back();
+		}
+		
     	$comment->delete();
         $this->isOpenCommentModal = false;
     	session()->flash('success', 'Comment deleted successfully');

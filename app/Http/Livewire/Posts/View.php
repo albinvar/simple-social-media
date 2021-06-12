@@ -25,7 +25,7 @@ class View extends Component
 	
     public function render()
     {
-    	$posts = Post::withCount(['likes', 'comments'])->with(['userLikes'])->with(['user' => function($query) {
+    	$posts = Post::withCount(['likes', 'comments'])->with(['userLikes', 'user' => function($query) {
         $query->select('id','name');
     }])->latest()->paginate(10);
         return view('livewire.posts.view', ['posts' => $posts]);

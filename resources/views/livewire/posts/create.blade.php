@@ -1,6 +1,6 @@
 
     <div class=" flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg mb-12">
          <x-jet-validation-errors class="mb-4" />
 
         <form method="POST" wire:submit.prevent="submit" >
@@ -8,7 +8,12 @@
             
             <div>
                 <x-jet-label for="title" value="{{ __('Title') }}" />
-                <x-jet-input id="title" class="block mt-1 w-full" type="text" wire:model="title" required/>
+                <x-jet-input id="title" class="block mt-1 mb-2 w-full" type="text" wire:model="title" />
+            </div>
+            
+            <div>
+                <x-jet-label for="location" value="{{ __('Location') }}" />
+                <x-jet-input id="location" class="block mt-1 w-full" type="text" wire:model="location" />
             </div>
 
             <div class="mt-4">

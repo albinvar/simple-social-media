@@ -13,7 +13,8 @@
         "laravel/jetstream": "^2.3",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
-        "livewire/livewire": "^2.0"
+        "livewire/livewire": "^2.0",
+        "stevebauman/location": "^6.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

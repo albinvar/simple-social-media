@@ -25,7 +25,9 @@ class View extends Component
 	
     public function render()
     {
-    	$posts = Post::with(['likes', 'userLikes'])->latest()->paginate(10);
+    	$posts = Post::withCount(['likes', 'comments'])->with(['userLikes', 'user' => function($query) {
+        $query->select('id','name');
+    }])->latest()->paginate(10);
         return view('livewire.posts.view', ['posts' => $posts]);
     }
     
@@ -88,6 +90,22 @@ class View extends Component
     public function setComments($post)
     {
         $this->comments = $post->comments;
+        return true;
     }  
+    
+    
+    public function deleteComment(Post $post, Comment $comment)
+    {
+    	if($comment->user->id !== auth()->id())
+	    {
+			session()->flash('comment.error', 'You can only delete your comments.');
+			return redirect()->back();
+		}
+		
+    	$comment->delete();
+        $this->isOpenCommentModal = false;
+    	session()->flash('success', 'Comment deleted successfully');
+	    return redirect()->back();
+    }
     
 }

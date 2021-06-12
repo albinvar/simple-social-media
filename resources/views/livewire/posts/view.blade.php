@@ -62,13 +62,13 @@
 									</svg>
                                     </span>
                                     @endif
-                                    <span>{{ $post->likes->count() }}</span>
+                                    <span>{{ $post->likes_count }}</span>
                                 </button>
                             </div>
                             <button
                                 class="mb-2 md:mb-0 bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
                                 wire:click="comments({{ $post->id }})"
-                                type="button" aria-label="like">{{ $post->comments->count() }} Comments</button>
+                                type="button" aria-label="like">{{ $post->comments_count }} Comments</button>
                         </div>
                     </div>
                 </div>
@@ -107,9 +107,9 @@
 
             <x-slot name="content">
             
-            @if(session()->has('comment.success'))
-            <div class="bg-green-100 border my-3 border-green-400 text-green-700 dark:bg-green-700 dark:border-green-600 dark:text-green-100 px-4 py-3 rounded relative" role="alert">
-				  <span class="block sm:inline text-center">{{ session()->get('comment.success') }}</span>
+            @if(session()->has('comment.error'))
+            <div class="bg-red-100 border my-3 border-red-400 text-red-700 dark:bg-red-700 dark:border-red-600 dark:text-red-100 px-4 py-3 rounded relative" role="alert">
+				  <span class="block sm:inline text-center">{{ session()->get('comment.error') }}</span>
 			</div>
             @endif
             
@@ -153,9 +153,9 @@
                         <small>Like</small>
                       </a>
                     <small class="self-center">.</small>
-                      <a href="#" class="hover:underline">
-                        <small>Reply</small>
-                      </a>
+                      <button class="" wire:click="deleteComment({{ $post->id }}, {{ $comment->id }})">
+                        <small>Delete</small>
+                      </button>
                     <small class="self-center">.</small>
                       <a href="#" class="hover:underline">
                         <small>{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</small>
@@ -164,7 +164,8 @@
                   </div>
                 </div>
               </div>
-              @empty
+              
+@empty
 		             No Comments found
               @endforelse
               </x-slot>

@@ -73,7 +73,7 @@ class Create extends Component
         
         session()->flash('success', 'Post created successfully');
         
-        return redirect('dashboard');
+        return redirect('home');
     }
     
     public function render()

@@ -22,7 +22,9 @@ class MediaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'post_id' => 5,
+            'path' => $this->faker->image('/post-photos', 640, 480),
+            'is_image' => true,
         ];
     }
 }

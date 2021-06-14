@@ -1,6 +1,6 @@
 
     <div class=" flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg mb-12">
+    <div class="w-11/12 lg:w-full md:w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg mb-12">
          <x-jet-validation-errors class="mb-4" />
 
         <form method="POST" wire:submit.prevent="submit" >
@@ -21,25 +21,19 @@
                <textarea rows="5" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow" wire:model="body"> </textarea>
             </div>
             
-            @if ($photo)
+            @if($photo)
             <div class="mt-4">
                 <x-jet-label value="{{ __('Image Preview :') }}" />
                <img class="p-3 h-32" src="{{ $photo->temporaryUrl() }}">
             </div>
             @endif
             
-            
-
-	        
-	    
-            
-            
             <div class="mt-4">
                 <x-jet-label for="body" value="{{ __('Image') }}" />
                <input type="file" wire:model="photo">
             </div>
             
-            <div wire:loading class="my-3"  wire:target="photo">Uploading...</div>
+            <div wire:loading class="my-3" wire:target="photo">Uploading...</div>
             
             <div class="flex items-center justify-end mt-4">
 
@@ -48,9 +42,6 @@
                 </x-jet-button>
             </div>
             
-            
-
-			 
         </form>
  
     </div>

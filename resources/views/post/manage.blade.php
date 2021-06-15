@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Manage Posts') }}
+            {{ __('My Posts') }}
         </h2>
     </x-slot>
 <div class="container px-3 mx-auto grid bg-gray-100">
@@ -11,7 +11,7 @@
 	
 </style>
 
-    <livewire:posts.manage />
+    <livewire:posts.view :type="'me'" />
     
 </div>
             

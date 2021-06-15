@@ -4,6 +4,11 @@
   <span class="block sm:inline text-center">{{ session()->get('success') }}</span>
 </div>
 @endif
+@if(session()->has('error'))
+<div class="bg-red-100 border my-3 border-red-400 text-red-700 dark:bg-red-700 dark:border-red-600 dark:text-red-100 px-4 py-3 rounded relative" role="alert">
+  <span class="block sm:inline text-center">{{ session()->get('error') }}</span>
+</div>
+@endif
 	@forelse($posts as $post)
     <div class="flex flex-col my-5">
             <div class="bg-white shadow-md  rounded-3xl p-4">
@@ -15,13 +20,36 @@
                         @endforeach
                     </div>
                     <div class="flex-auto ml-3 justify-evenly py-2">
+                    @if(auth()->user()->role_id === 2 || $post->user->id === auth()->id())
+                    	<button
+							wire:click="showDeletePostModal({{ $post->id }})"
+                            class="flex float-right items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-red-600 focus:outline-none focus:shadow-outline-gray"
+                            aria-label="Delete"
+                            wire:loading.class="bg-gray text-gray-400 "
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                clip-rule="evenodd"
+                              ></path>
+                            </svg>
+                          </button> 
+                         @endif
                         <div class="flex flex-wrap ">
                             <div class="w-full flex-none text-xs text-blue-700 font-medium ">
                                 Posted by {{ $post->user->name }}
                             </div>
                             <h2 class="flex-auto text-lg font-medium">{{ $post->title }}</h2>
                         </div>
-                        <p class="mt-3">{{ $post->body }}</p>
+                        
+                          <p class="mt-3">{{ $post->body }}</p>
+                          
                         <div class="flex py-4  text-sm text-gray-600">
                             <div class="flex-1 inline-flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none"
@@ -101,77 +129,8 @@
         </div>
         
        
-         <!-- Delete User Confirmation Modal -->
-        <x-jet-dialog-modal wire:model="isOpenCommentModal">
-            <x-slot name="title">
-                {{ __('Comments') }}
-            </x-slot>
+        @include('elements.comments-post-modal')
 
-            <x-slot name="content">
-            
-            @if(session()->has('comment.error'))
-            <div class="bg-red-100 border my-3 border-red-400 text-red-700 dark:bg-red-700 dark:border-red-600 dark:text-red-100 px-4 py-3 rounded relative" role="alert">
-				  <span class="block sm:inline text-center">{{ session()->get('comment.error') }}</span>
-			</div>
-            @endif
-            
-            <form wire:submit.prevent="createComment({{ $postId }})" >
-                <div class="mt-4" >
-                    <textarea class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block" wire:model="comment"
-                                placeholder="{{ __('Your comment') }}"
-                                /> </textarea>
-                    <x-jet-input-error for="comment" class="mt-2" />
-                </div>
-            </x-slot>
-
-            <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('isOpenCommentModal')" wire:loading.attr="disabled">
-                    {{ __('Cancel') }}
-                </x-jet-secondary-button>
-
-                <x-jet-button class="ml-2" wire:loading.attr="disabled">
-                    {{ __('Post Comment') }}
-                </x-jet-button>
-                </form>
-                </x-slot>
-            
-            <x-slot name="comments">
-            @forelse($comments as $comment)
-			<div class="flex space-x-2 my-3">
-                <div class="block">
-                  <div class="bg-gray-100 w-auto rounded-xl px-2 pb-2">
-                    <div class="font-medium">
-                      <a href="#" class="hover:underline text-sm">
-                        <span class="text-xs font-semibold">{{ $comment->user->name }}</span>
-                      </a>
-                    </div>
-                    <div class="text-xs">
-                      {{ $comment->comment }}
-                    </div>
-                  </div>
-                  <div class="flex justify-start items-center text-xs w-full">
-                    <div class="font-semibold text-gray-700 px-2 flex items-center justify-center space-x-1">
-                      <a href="#" class="hover:underline">
-                        <small>Like</small>
-                      </a>
-                    <small class="self-center">.</small>
-                      <button class="" wire:click="deleteComment({{ $post->id }}, {{ $comment->id }})">
-                        <small>Delete</small>
-                      </button>
-                    <small class="self-center">.</small>
-                      <a href="#" class="hover:underline">
-                        <small>{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</small>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              @empty
-		             No Comments found
-              @endforelse
-              </x-slot>
-        </x-jet-dialog-modal>
-
-        
+        @include('elements.delete-post-modal')
         
 </div>

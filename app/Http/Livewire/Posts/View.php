@@ -19,16 +19,45 @@ class View extends Component
     
     public $comment;
     
+    public $type;
+    
+    public $queryType;
+    
     public $postId;
     
-    public $isOpenCommentModal = 0;
+    public $deletePostId;
+    
+    public $isOpenCommentModal = false;
+    
+    public $isOpenDeletePostModal = false;
+    
+    
+    public function mount($type=null)
+    {
+        $this->queryType = $type;
+    }
+    
     
     public function render()
     {
-        $posts = Post::withCount(['likes', 'comments'])->with(['userLikes', 'user' => function ($query) {
-            $query->select('id', 'name');
-        }])->latest()->paginate(10);
+        $posts = $this->setQuery();
+        
         return view('livewire.posts.view', ['posts' => $posts]);
+    }
+    
+    private function setQuery()
+    {
+        if (!empty($this->queryType) && $this->queryType == 'me') {
+            $posts = Post::withCount(['likes', 'comments'])->where('user_id', Auth::id())->with(['userLikes', 'user' => function ($query) {
+                $query->select('id', 'name');
+            }])->latest()->paginate(10);
+        } else {
+            $posts = Post::withCount(['likes', 'comments'])->with(['userLikes', 'user' => function ($query) {
+                $query->select('id', 'name');
+            }])->latest()->paginate(10);
+        }
+        
+        return $posts;
     }
     
     public function incrementLike(Post $post)
@@ -92,16 +121,40 @@ class View extends Component
     }
     
     
+    public function showDeletePostModal(Post $post)
+    {
+        $this->deletePostId = $post->id;
+        $this->isOpenDeletePostModal = true;
+    }
+    
+    
+    public function deletePost(Post $post)
+    {
+        if (Auth::user()->role_id === 2 || $post->user->id === Auth::id()) {
+            try {
+                $post->delete();
+                session()->flash('success', 'Post deleted successfully');
+            } catch (\Exception $e) {
+                session()->flash('error', 'Cannot delete post');
+            }
+        } else {
+            session()->flash('error', 'Action not permitted');
+        }
+        $this->isOpenDeletePostModal = false;
+        return redirect()->back();
+    }
+    
+    
     public function deleteComment(Post $post, Comment $comment)
     {
-        if ($comment->user->id !== auth()->id()) {
+        if (Auth::user()->role_id === 2 || $comment->user->id === Auth::id() || $post->user->id === Auth::id()) {
+            $comment->delete();
+            $this->isOpenCommentModal = false;
+            session()->flash('success', 'Comment deleted successfully');
+        } else {
             session()->flash('comment.error', 'You can only delete your comments.');
-            return redirect()->back();
         }
         
-        $comment->delete();
-        $this->isOpenCommentModal = false;
-        session()->flash('success', 'Comment deleted successfully');
         return redirect()->back();
     }
 }

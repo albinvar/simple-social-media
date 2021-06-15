@@ -128,7 +128,7 @@
         </div>
         
        
-         <!-- Delete User Confirmation Modal -->
+         <!-- Delete User Comment Modal -->
         <x-jet-dialog-modal wire:model="isOpenCommentModal">
             <x-slot name="title">
                 {{ __('Comments') }}

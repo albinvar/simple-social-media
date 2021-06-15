@@ -12,7 +12,9 @@
 
 ## Introduction
 
-A very Simple Social media, a simple web application built with laravel Jetstream and livewire. The application helps you to host a simple social media.
+A very Simple Social media web application built with laravel Jetstream and livewire.
+
+The application is designed and tested to use conveniently without any issues.
 
 ## Features
 
@@ -23,7 +25,7 @@ A very Simple Social media, a simple web application built with laravel Jetstrea
 - Comment on posts
 - Delete posts
 - Delete Comments
-- Ontime image uploads
+- On-time image uploads
 - Dynamic and Responsive Design
 - Compile and minify assets (200 kb resources)
 - Many more features....
@@ -78,7 +80,9 @@ php artisan serve
 
 ### Current Admin Credentials
 
-**Email** : admin@gmail.com
+You may use these credentials to log into your website. you can change these credentials shortly after logging in.
+
+**Email** : admin@gmail.com<br>
 **Password** : password
 
 

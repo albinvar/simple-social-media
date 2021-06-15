@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 	    User::factory(40)->create()->each(function ($user) {
   
 		    Post::factory(random_int(1,10))->create(['user_id'=>$user->id])->each(function ($post) use ($user) {
-		    	Media::factory()->create(['post_id'=>$post->id, 'path' => '/post-photos/test.png']);
+		    	Media::factory()->create(['post_id'=>$post->id]);
 				Like::factory()->create(['post_id'=>$post->id, 'user_id' => $user->id]);
 				Comment::factory(random_int(3,27))->create(['post_id'=>$post->id, 'user_id' => $user->id]);
 		});

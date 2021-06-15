@@ -91,6 +91,26 @@ class View extends Component
         return true;
     }
     
+    public function deletePost(Post $post)
+    {
+    	if(Auth::user()->role_id === 2 || $post->user->id === Auth::id())
+	    {
+		 try{
+			$post->delete();
+			session()->flash('success', 'Post deleted successfully');
+            
+		} catch(\Exception $e) {
+			session()->flash('error', 'Cannot delete post');
+            
+           }
+		} else {
+			session()->flash('error', 'Action not permitted');
+            
+		}
+		
+		return redirect()->back();
+    }
+    
     
     public function deleteComment(Post $post, Comment $comment)
     {

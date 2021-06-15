@@ -19,6 +19,10 @@ class View extends Component
     
     public $comment;
     
+    public $type;
+    
+    public $queryType;
+    
     public $postId;
     
     public $deletePostId;
@@ -27,12 +31,34 @@ class View extends Component
     
     public $isOpenDeletePostModal = false;
     
+    
+    public function mount($type=null)
+    {
+    	$this->queryType = $type;
+    }
+    
+    
     public function render()
     {
-        $posts = Post::withCount(['likes', 'comments'])->with(['userLikes', 'user' => function ($query) {
-            $query->select('id', 'name');
-        }])->latest()->paginate(10);
+        $posts = $this->setQuery();
+        
         return view('livewire.posts.view', ['posts' => $posts]);
+    }
+    
+    private function setQuery()
+    {
+    	if(!empty($this->queryType) && $this->queryType == 'me')
+		{
+		$posts = Post::withCount(['likes', 'comments'])->where('user_id', Auth::id())->with(['userLikes', 'user' => function ($query) {
+	            $query->select('id', 'name');
+	        }])->latest()->paginate(10);
+        } else {
+        	$posts = Post::withCount(['likes', 'comments'])->with(['userLikes', 'user' => function ($query) {
+	            $query->select('id', 'name');
+	        }])->latest()->paginate(10);
+        }
+        
+        return $posts;
     }
     
     public function incrementLike(Post $post)

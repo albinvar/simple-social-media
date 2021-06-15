@@ -25,6 +25,7 @@
 							wire:click="showDeletePostModal({{ $post->id }})"
                             class="flex float-right items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-red-600 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Delete"
+                            wire:loading.class="bg-gray text-gray-400 "
                           >
                             <svg
                               class="w-5 h-5"

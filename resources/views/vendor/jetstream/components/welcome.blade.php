@@ -6,6 +6,6 @@
 	
 </style>
 
-     <livewire:posts.view />
+     <livewire:posts.view :type="null" />
     
 </div>

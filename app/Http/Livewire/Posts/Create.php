@@ -21,10 +21,10 @@ class Create extends Component
     public $location;
     
     protected $rules = [
-             'title' => 'required|max:250',
-             'location' => 'required|max:250',
+             'title' => 'required|max:50',
+             'location' => 'nullable|string|max:60',
              'body' => 'required|max:1000',
-             'photo' => 'image|max:1024',
+             'photo' => 'nullable|image|max:1024',
             ];
     
     public function mount()
@@ -58,17 +58,27 @@ class Create extends Component
             'body' => $data['body'],
         ]);
         
-        $path = $this->photo->store('post-photos', 'public');
+        $this->storeImages($post);
         
+        session()->flash('success', 'Post created successfully');
+        
+        return redirect('home');
+    }
+    
+    
+    private function storeImages($post)
+    {
+        if (empty($this->photo)) {
+            return true;
+        }
+    
+        $path = $this->photo->store('post-photos', 'public');
+    
         $media = Media::create([
             'post_id' => $post->id,
             'path' => $path,
             'is_image' => true,
         ]);
-        
-        session()->flash('success', 'Post created successfully');
-        
-        return redirect('home');
     }
     
     public function render()

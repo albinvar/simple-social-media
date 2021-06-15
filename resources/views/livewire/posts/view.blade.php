@@ -96,7 +96,9 @@
         </div>
         @endforelse
         
-        {{ $posts->links() }}
+        <div class="py-4 mb-2">
+	        {{ $posts->links() }}
+        </div>
         
        
          <!-- Delete User Confirmation Modal -->
@@ -164,8 +166,7 @@
                   </div>
                 </div>
               </div>
-              
-@empty
+              @empty
 		             No Comments found
               @endforelse
               </x-slot>

@@ -22,7 +22,12 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->word(),
+            'location' => $this->faker->streetName(),
+            'body' => $this->faker->sentence(),
+            'user_id' => function () {
+                return \App\Models\User::factory()->create()->id;
+            },
         ];
     }
 }

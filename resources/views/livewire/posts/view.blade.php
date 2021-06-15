@@ -22,7 +22,7 @@
                     <div class="flex-auto ml-3 justify-evenly py-2">
                     @if(auth()->user()->role_id === 2 || $post->user->id === auth()->id())
                     	<button
-							wire:click="deletePost({{ $post->id }})"
+							wire:click="showDeletePostModal({{ $post->id }})"
                             class="flex float-right items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-red-600 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Delete"
                           >
@@ -199,6 +199,6 @@
               </x-slot>
         </x-jet-dialog-modal>
 
-        
+        @include('elements.delete-post-modal')
         
 </div>

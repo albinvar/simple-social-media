@@ -21,7 +21,11 @@ class View extends Component
     
     public $postId;
     
-    public $isOpenCommentModal = 0;
+    public $deletePostId;
+    
+    public $isOpenCommentModal = false;
+    
+    public $isOpenDeletePostModal = false;
     
     public function render()
     {
@@ -91,6 +95,14 @@ class View extends Component
         return true;
     }
     
+    
+    public function showDeletePostModal(Post $post)
+    {
+    	$this->deletePostId = $post->id;
+    	$this->isOpenDeletePostModal = true;
+    }
+    
+    
     public function deletePost(Post $post)
     {
     	if(Auth::user()->role_id === 2 || $post->user->id === Auth::id())
@@ -107,7 +119,7 @@ class View extends Component
 			session()->flash('error', 'Action not permitted');
             
 		}
-		
+		$this->isOpenDeletePostModal = false;
 		return redirect()->back();
     }
     

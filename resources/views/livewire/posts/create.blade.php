@@ -28,12 +28,29 @@
             </div>
             @endif
             
+            
+         <div
+		    x-data="{ isUploading: false, progress: 0 }"
+		    x-on:livewire-upload-start="isUploading = true"
+		    x-on:livewire-upload-finish="isUploading = false"
+		    x-on:livewire-upload-error="isUploading = false"
+			x-on:livewire-upload-progress="progress = $event.detail.progress"
+			>
+            
             <div class="mt-4">
                 <x-jet-label for="body" value="{{ __('Image') }}" />
                <input type="file" wire:model="photo">
             </div>
             
+            
+            
             <div wire:loading class="my-3" wire:target="photo">Uploading...</div>
+            
+	        <!-- Progress Bar -->
+		    <div x-show="isUploading">
+		        <progress max="100" x-bind:value="progress"></progress>
+		    </div>
+		</div>
             
             <div class="flex items-center justify-end mt-4">
 

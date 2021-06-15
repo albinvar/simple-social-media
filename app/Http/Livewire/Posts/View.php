@@ -34,7 +34,7 @@ class View extends Component
     
     public function mount($type=null)
     {
-    	$this->queryType = $type;
+        $this->queryType = $type;
     }
     
     
@@ -47,15 +47,14 @@ class View extends Component
     
     private function setQuery()
     {
-    	if(!empty($this->queryType) && $this->queryType == 'me')
-		{
-		$posts = Post::withCount(['likes', 'comments'])->where('user_id', Auth::id())->with(['userLikes', 'user' => function ($query) {
-	            $query->select('id', 'name');
-	        }])->latest()->paginate(10);
+        if (!empty($this->queryType) && $this->queryType == 'me') {
+            $posts = Post::withCount(['likes', 'comments'])->where('user_id', Auth::id())->with(['userLikes', 'user' => function ($query) {
+                $query->select('id', 'name');
+            }])->latest()->paginate(10);
         } else {
-        	$posts = Post::withCount(['likes', 'comments'])->with(['userLikes', 'user' => function ($query) {
-	            $query->select('id', 'name');
-	        }])->latest()->paginate(10);
+            $posts = Post::withCount(['likes', 'comments'])->with(['userLikes', 'user' => function ($query) {
+                $query->select('id', 'name');
+            }])->latest()->paginate(10);
         }
         
         return $posts;
@@ -124,29 +123,25 @@ class View extends Component
     
     public function showDeletePostModal(Post $post)
     {
-    	$this->deletePostId = $post->id;
-    	$this->isOpenDeletePostModal = true;
+        $this->deletePostId = $post->id;
+        $this->isOpenDeletePostModal = true;
     }
     
     
     public function deletePost(Post $post)
     {
-    	if(Auth::user()->role_id === 2 || $post->user->id === Auth::id())
-	    {
-		 try{
-			$post->delete();
-			session()->flash('success', 'Post deleted successfully');
-            
-		} catch(\Exception $e) {
-			session()->flash('error', 'Cannot delete post');
-            
-           }
-		} else {
-			session()->flash('error', 'Action not permitted');
-            
-		}
-		$this->isOpenDeletePostModal = false;
-		return redirect()->back();
+        if (Auth::user()->role_id === 2 || $post->user->id === Auth::id()) {
+            try {
+                $post->delete();
+                session()->flash('success', 'Post deleted successfully');
+            } catch (\Exception $e) {
+                session()->flash('error', 'Cannot delete post');
+            }
+        } else {
+            session()->flash('error', 'Action not permitted');
+        }
+        $this->isOpenDeletePostModal = false;
+        return redirect()->back();
     }
     
     
@@ -154,12 +149,12 @@ class View extends Component
     {
         if (Auth::user()->role_id === 2 || $comment->user->id === Auth::id() || $post->user->id === Auth::id()) {
             $comment->delete();
-	        $this->isOpenCommentModal = false;
-	        session()->flash('success', 'Comment deleted successfully');
+            $this->isOpenCommentModal = false;
+            session()->flash('success', 'Comment deleted successfully');
         } else {
-	        session()->flash('comment.error', 'You can only delete your comments.');
-		}
-		
+            session()->flash('comment.error', 'You can only delete your comments.');
+        }
+        
         return redirect()->back();
     }
 }

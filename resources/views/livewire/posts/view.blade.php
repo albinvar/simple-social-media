@@ -4,6 +4,11 @@
   <span class="block sm:inline text-center">{{ session()->get('success') }}</span>
 </div>
 @endif
+@if(session()->has('error'))
+<div class="bg-red-100 border my-3 border-red-400 text-red-700 dark:bg-red-700 dark:border-red-600 dark:text-red-100 px-4 py-3 rounded relative" role="alert">
+  <span class="block sm:inline text-center">{{ session()->get('error') }}</span>
+</div>
+@endif
 	@forelse($posts as $post)
     <div class="flex flex-col my-5">
             <div class="bg-white shadow-md  rounded-3xl p-4">
@@ -15,13 +20,35 @@
                         @endforeach
                     </div>
                     <div class="flex-auto ml-3 justify-evenly py-2">
+                    @if(auth()->user()->role_id === 2 || $post->user->id === auth()->id())
+                    	<button
+							wire:click="deletePost({{ $post->id }})"
+                            class="flex float-right items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-red-600 focus:outline-none focus:shadow-outline-gray"
+                            aria-label="Delete"
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                clip-rule="evenodd"
+                              ></path>
+                            </svg>
+                          </button> 
+                         @endif
                         <div class="flex flex-wrap ">
                             <div class="w-full flex-none text-xs text-blue-700 font-medium ">
                                 Posted by {{ $post->user->name }}
                             </div>
                             <h2 class="flex-auto text-lg font-medium">{{ $post->title }}</h2>
                         </div>
-                        <p class="mt-3">{{ $post->body }}</p>
+                        
+                          <p class="mt-3">{{ $post->body }}</p>
+                          
                         <div class="flex py-4  text-sm text-gray-600">
                             <div class="flex-1 inline-flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none"

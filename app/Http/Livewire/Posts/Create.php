@@ -68,19 +68,17 @@ class Create extends Component
     
     private function storeImages($post)
     {
-    	
-	    if(empty($this->photo))
-		{
-			return true; 
-		}
-	
-    	$path = $this->photo->store('post-photos', 'public');
-	
-		$media = Media::create([
+        if (empty($this->photo)) {
+            return true;
+        }
+    
+        $path = $this->photo->store('post-photos', 'public');
+    
+        $media = Media::create([
             'post_id' => $post->id,
             'path' => $path,
             'is_image' => true,
-	    ]);
+        ]);
     }
     
     public function render()

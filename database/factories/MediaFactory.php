@@ -23,8 +23,8 @@ class MediaFactory extends Factory
     {
         return [
             'post_id' => function () {
-            return \App\Models\Post::factory()->create()->id;
-        },
+                return \App\Models\Post::factory()->create()->id;
+            },
             'path' => '/post-photos/' . $this->faker->image('storage/app/public/post-photos', 640, 480, 'social media', false),
             'is_image' => true,
         ];

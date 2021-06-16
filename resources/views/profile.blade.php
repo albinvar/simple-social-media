@@ -36,7 +36,7 @@
 				<span class="text-gray-600">Comments</span>
 			</span>
 			<span class="text-center px-4">
-				<span class="font-bold text-gray-700">{{ $user->posts->count() }}</span>
+				<span class="font-bold text-gray-700">{{ $posts }}</span>
 				<span class="text-gray-600">Posts</span>
 			</span>
 		</div>

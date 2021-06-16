@@ -17,15 +17,20 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
-        return view('profile', ['user' => $user, 'likes' => $this->countLikes(), 'comments' => $this->countComments()]);
+        return view('profile', ['user' => $user, 'likes' => $this->countLikes(), 'comments' => $this->countComments(), 'posts' => $this->countPosts()]);
+    }
+    
+    private function countPosts()
+    {
+    	return Post::count();    
     }
     
     private function countLikes()
     {
-        $posts = Post::with('likes')->get();
+        $posts = Post::withCount('likes')->get();
         $postsArr = $posts->map(function (Post $post) {
             $postbj = $post->toArray();
-            $postObj['likes_count'] = $post->likes->count();
+            $postObj['likes_count'] = $post->getAttribute('likes_count');
             return $postObj;
         });
         
@@ -40,10 +45,10 @@ class ProfileController extends Controller
     
     private function countComments()
     {
-        $posts = Post::with('comments')->get();
+        $posts = Post::withCount('comments')->get();
         $postsArr = $posts->map(function (Post $post) {
-            $postbj = $post->toArray();
-            $postObj['comments_count'] = $post->comments->count();
+            $postObj = $post->toArray();
+            $postObj['comments_count'] = $post->getAttribute('comments_count');
             return $postObj;
         });
         

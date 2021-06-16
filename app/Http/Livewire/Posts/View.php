@@ -49,11 +49,11 @@ class View extends Component
     {
         if (!empty($this->queryType) && $this->queryType == 'me') {
             $posts = Post::withCount(['likes', 'comments'])->where('user_id', Auth::id())->with(['userLikes', 'user' => function ($query) {
-                $query->select('id', 'name');
+                $query->select('id', 'name', 'username');
             }])->latest()->paginate(10);
         } else {
             $posts = Post::withCount(['likes', 'comments'])->with(['userLikes', 'user' => function ($query) {
-                $query->select('id', 'name');
+                $query->select('id', 'name', 'username');
             }])->latest()->paginate(10);
         }
         

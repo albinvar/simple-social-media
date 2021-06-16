@@ -42,8 +42,10 @@
                           </button> 
                          @endif
                         <div class="flex flex-wrap ">
-                            <div class="w-full flex-none text-xs text-blue-700 font-medium ">
-                                Posted by {{ $post->user->username }}
+                            <div class="w-full flex-none mb-2 text-xs text-blue-700 font-medium ">
+                            	
+                            	<img class="inline-block object-cover w-8 h-8 mr-1 text-white rounded-full shadow-sm cursor-pointer" src="{{ $post->user->profile_photo_url }}" alt="" />
+                                Posted by {{ '@' . $post->user->username }}
                             </div>
                             <h2 class="flex-auto text-lg font-medium">{{ $post->title }}</h2>
                         </div>

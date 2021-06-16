@@ -32,34 +32,18 @@ class ProfileController extends Controller
     private function countLikes()
     {
         $postsArr = $this->posts->map(function (Post $post) {
-            $postbj = $post->toArray();
-            $postObj['likes_count'] = $post->getAttribute('likes_count');
-            return $postObj;
-        });
+           return $post->likes_count;
+        })->toArray();
         
-        $count = 0;
-        
-        foreach ($postsArr as $post) {
-            $count += $post['likes_count'];
-        }
-        
-        return $count;
+        return array_sum($postsArr);
     }
     
     private function countComments()
     {
         $postsArr = $this->posts->map(function (Post $post) {
-            $postObj = $post->toArray();
-            $postObj['comments_count'] = $post->getAttribute('comments_count');
-            return $postObj;
-        });
+            return $post->comments_count;
+        })->toArray();
         
-        $count = 0;
-        
-        foreach ($postsArr as $post) {
-            $count += $post['comments_count'];
-        }
-        
-        return $count;
+        return array_sum($postsArr);
     }
 }

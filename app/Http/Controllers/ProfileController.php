@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-	
-	protected $post;
+    protected $post;
 
     /**
      * Display the specified resource.
@@ -19,20 +18,20 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
-    	$this->posts = Post::select('id')->withCount(['likes', 'comments'])->get();
+        $this->posts = Post::select('id')->withCount(['likes', 'comments'])->get();
     
         return view('profile', ['user' => $user, 'likes' => $this->countLikes(), 'comments' => $this->countComments(), 'posts' => $this->countPosts()]);
     }
     
     private function countPosts()
     {
-    	return $this->posts->count();    
+        return $this->posts->count();
     }
     
     private function countLikes()
     {
         $postsArr = $this->posts->map(function (Post $post) {
-           return $post->likes_count;
+            return $post->likes_count;
         })->toArray();
         
         return array_sum($postsArr);

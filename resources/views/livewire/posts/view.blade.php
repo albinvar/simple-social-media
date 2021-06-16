@@ -42,11 +42,14 @@
                           </button> 
                          @endif
                         <div class="flex flex-wrap ">
-                            <div class="w-full flex-none mb-2 text-xs text-blue-700 font-medium ">
-                            	
-                            	<img class="inline-block object-cover w-8 h-8 mr-1 text-white rounded-full shadow-sm cursor-pointer" src="{{ $post->user->profile_photo_url }}" alt="" />
+                        	
+                            <div class="w-full flex-none mb-2 text-xs text-blue-700 font-medium">
+                            	<a href="{{ route('profile', ['user' => $post->user->username]) }}">
+                            	<img class="inline-block object-cover w-8 h-8 mr-1 text-white rounded-full shadow-sm cursor-pointer" src="{{ $post->user->profile_photo_url }}" alt="{{ $post->user->name }}" />
                                 Posted by {{ '@' . $post->user->username }}
+                                </a>
                             </div>
+                            
                             <h2 class="flex-auto text-lg font-medium">{{ $post->title }}</h2>
                         </div>
                         

@@ -24,4 +24,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     })->name('home');
         
     Route::resource('/posts', "App\Http\Controllers\PostController")->name('*', 'posts');
+    Route::get('/{user:username}', "App\Http\Controllers\ProfileController@show")->name('profile');
 });

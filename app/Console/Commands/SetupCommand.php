@@ -37,17 +37,17 @@ class SetupCommand extends Command
      */
     public function handle()
     {
-    	$this->newline();
-    	$this->comment('Setting Up Database');
+        $this->newline();
+        $this->comment('Setting Up Database');
         $this->call('migrate:refresh', ['--seed' => true]);
-        
+
         $this->newline();
         $this->comment('Setting Up Storage');
         try {
-	        $this->callSilently('storage:link');
-		} catch(\Exception $e) {
-			$this->newline();
-			$this->error('Error encountered');
-		}
+            $this->callSilently('storage:link');
+        } catch (\Exception $e) {
+            $this->newline();
+            $this->error('Error encountered');
+        }
     }
 }

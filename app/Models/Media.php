@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Media extends Model
 {
     use HasFactory;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,8 +19,7 @@ class Media extends Model
         'path',
         'is_image',
     ];
-    
-    
+
     public function post()
     {
         return $this->belongsTo(Post::class);

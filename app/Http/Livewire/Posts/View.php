@@ -77,8 +77,11 @@ class View extends Component
         }
     }
     
-    public function comments(Post $post)
+    public function comments($post)
     {
+    	$post = Post::with(['comments.user' => function ($query) {
+                $query->select('id', 'name');
+            }])->find($post);
         $this->postId = $post->id;
         $this->resetValidation('comment');
         $this->isOpenCommentModal = true;

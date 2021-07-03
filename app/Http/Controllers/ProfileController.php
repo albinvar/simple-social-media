@@ -18,8 +18,7 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
-        $this->posts = Post::select('id')->withCount(['likes', 'comments'])->get();
-
+        $this->posts = Post::select('id')->where('user_id', $user->id)->withCount(['likes', 'comments'])->get();
         return view('profile', ['user' => $user, 'likes' => $this->countLikes(), 'comments' => $this->countComments(), 'posts' => $this->countPosts()]);
     }
 

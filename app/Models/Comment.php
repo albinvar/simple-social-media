@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
-    
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,7 +19,7 @@ class Comment extends Model
         'user_id',
         'comment',
     ];
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);

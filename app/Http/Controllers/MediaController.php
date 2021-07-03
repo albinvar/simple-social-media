@@ -14,7 +14,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -24,40 +24,43 @@ class MediaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Media  $media
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Media $media)
     {
-        //
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Media  $media
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Media $media)
     {
-        //
+        
     }
 
     /**
@@ -65,21 +68,23 @@ class MediaController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Media  $media
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Media $media)
     {
-        //
+        
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Media  $media
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Media $media)
     {
-        //
+        
     }
 }

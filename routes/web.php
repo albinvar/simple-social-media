@@ -17,12 +17,11 @@ Route::get('/', function () {
     return redirect(route('home'));
 });
 
-
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/home', function () {
         return view('home');
     })->name('home');
-        
+
     Route::resource('/posts', "App\Http\Controllers\PostController")->name('*', 'posts');
     Route::get('/{user:username}', "App\Http\Controllers\ProfileController@show")->name('profile');
 });

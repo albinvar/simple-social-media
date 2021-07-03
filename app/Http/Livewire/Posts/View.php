@@ -48,11 +48,11 @@ class View extends Component
     private function setQuery()
     {
         if (!empty($this->queryType) && $this->queryType == 'me') {
-            $posts = Post::withCount(['likes', 'comments'])->where('user_id', Auth::id())->with(['userLikes', 'user' => function ($query) {
+            $posts = Post::withCount(['likes', 'comments'])->where('user_id', Auth::id())->with(['userLikes', 'postImages', 'user' => function ($query) {
                 $query->select(['id', 'name', 'username', 'profile_photo_path']);
             }])->latest()->paginate(10);
         } else {
-            $posts = Post::withCount(['likes', 'comments'])->with(['userLikes', 'user' => function ($query) {
+            $posts = Post::withCount(['likes', 'comments'])->with(['userLikes', 'postImages', 'user' => function ($query) {
                 $query->select(['id', 'name', 'username', 'profile_photo_path']);
             }])->latest()->paginate(10);
         }
@@ -77,8 +77,11 @@ class View extends Component
         }
     }
     
-    public function comments(Post $post)
+    public function comments($post)
     {
+    	$post = Post::with(['comments.user' => function ($query) {
+                $query->select('id', 'name');
+            }])->find($post);
         $this->postId = $post->id;
         $this->resetValidation('comment');
         $this->isOpenCommentModal = true;

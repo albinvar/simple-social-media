@@ -37,10 +37,9 @@ class SetupCommand extends Command
      */
     public function handle()
     {
-        $this->newline();
-        $this->comment('Setting Up Database');
-        $this->call('migrate:refresh', ['--seed' => true]);
-
+    	$this->newline();
+    	$this->comment('Setting Up Database');
+        $this->call('migrate:fresh', ['--seed' => true]);
         $this->newline();
         $this->comment('Setting Up Storage');
         try {

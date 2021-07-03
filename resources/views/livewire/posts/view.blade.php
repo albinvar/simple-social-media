@@ -42,9 +42,14 @@
                           </button> 
                          @endif
                         <div class="flex flex-wrap ">
-                            <div class="w-full flex-none text-xs text-blue-700 font-medium ">
-                                Posted by {{ $post->user->name }}
+                        	
+                            <div class="w-full flex-none mb-2 text-xs text-blue-700 font-medium">
+                            	<a href="{{ route('profile', ['user' => $post->user->username]) }}">
+                            	<img class="inline-block object-cover w-8 h-8 mr-1 text-white rounded-full shadow-sm cursor-pointer" src="{{ $post->user->profile_photo_url }}" alt="{{ $post->user->name }}" />
+                                Posted by {{ '@' . $post->user->username }}
+                                </a>
                             </div>
+                            
                             <h2 class="flex-auto text-lg font-medium">{{ $post->title }}</h2>
                         </div>
                         
@@ -60,7 +65,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                 </svg>
-                                <p class="">@if(!empty($post->location)) {{ $post->location }} @else Unknown @endif</p>
+                                <p class="">{{ (!empty($post->location)) ? $post->location : 'Unknown' }}</p>
                             </div>
                             <div class="flex-1 inline-flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"

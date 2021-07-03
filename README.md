@@ -73,6 +73,11 @@ npm dev
 npm prod
 ```
 
+- Create symbolic link 
+```
+php artisan storage:link
+```
+
 - Start the local server using the command
 ```
 php artisan serve
@@ -87,6 +92,8 @@ You may use these credentials to log into your website. you can change these cre
 
 
 ## Generating Dummy Data
+
+Creates dummy data using faker library.
 
 ```
 php artisan db:seed --class="DummyDataSeeder"

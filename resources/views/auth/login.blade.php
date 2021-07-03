@@ -44,5 +44,11 @@
                 </x-jet-button>
             </div>
         </form>
+        
+    <x-slot name="anchor">
+	   Don't have an account yet. <a class="underline" href="{{ route('register') }}">Sign up</a> now.
+	</x-slot>
+        
     </x-jet-authentication-card>
+	
 </x-guest-layout>

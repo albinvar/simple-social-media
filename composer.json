@@ -14,6 +14,7 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
+        "nunomaduro/phpinsights": "^2.0",
         "stevebauman/location": "^6.1"
     },
     "require-dev": {

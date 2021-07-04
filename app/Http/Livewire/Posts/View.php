@@ -133,12 +133,14 @@ class View extends Component
 
     public function deleteComment(Post $post, Comment $comment)
     {
-        if (Auth::user()->role_id === 2 || $comment->user->id === Auth::id() || $post->user->id === Auth::id()) {
+    	$response = Gate::inspect('delete', [$comment, $post]);
+    
+        if ($response->allowed()) {
             $comment->delete();
             $this->isOpenCommentModal = false;
             session()->flash('success', 'Comment deleted successfully');
         } else {
-            session()->flash('comment.error', 'You can only delete your comments.');
+            session()->flash('comment.error', $response->message());
         }
 
         return redirect()->back();

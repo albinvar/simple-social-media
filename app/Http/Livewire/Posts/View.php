@@ -9,6 +9,7 @@ use Auth;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Gate;
 
 class View extends Component
 {
@@ -114,7 +115,9 @@ class View extends Component
 
     public function deletePost(Post $post)
     {
-        if (Auth::user()->role_id === 2 || $post->user->id === Auth::id()) {
+    	$response = Gate::inspect('delete', $post);
+    
+        if ($response->allowed()) {
             try {
                 $post->delete();
                 session()->flash('success', 'Post deleted successfully');
@@ -122,7 +125,7 @@ class View extends Component
                 session()->flash('error', 'Cannot delete post');
             }
         } else {
-            session()->flash('error', 'Action not permitted');
+            session()->flash('error', $response->message());
         }
         $this->isOpenDeletePostModal = false;
         return redirect()->back();
@@ -130,12 +133,14 @@ class View extends Component
 
     public function deleteComment(Post $post, Comment $comment)
     {
-        if (Auth::user()->role_id === 2 || $comment->user->id === Auth::id() || $post->user->id === Auth::id()) {
+    	$response = Gate::inspect('delete', [$comment, $post]);
+    
+        if ($response->allowed()) {
             $comment->delete();
             $this->isOpenCommentModal = false;
             session()->flash('success', 'Comment deleted successfully');
         } else {
-            session()->flash('comment.error', 'You can only delete your comments.');
+            session()->flash('comment.error', $response->message());
         }
 
         return redirect()->back();

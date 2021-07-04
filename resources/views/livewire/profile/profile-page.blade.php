@@ -23,6 +23,11 @@
         <p class="text-sm text-gray-600 text-center">
           {{ '@' . $user->username }}
         </p>
+        <div class="mx-auto text-center my-3">
+	        <button type="button" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+	      	Follow
+		    </button>
+		</div>
       </div>
 
       <div class="mt-6 pt-3 flex flex-wrap mx-6 border-t">

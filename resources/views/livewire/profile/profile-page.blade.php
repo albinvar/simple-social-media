@@ -29,11 +29,11 @@
         <div
 		class="py-4 flex justify-center items-center w-full divide-x divide-gray-400 divide-solid">
 			<span class="text-center px-4">
-				<span class="font-bold text-gray-700">{{ $followers }}</span>
+				<span class="font-bold text-gray-700">{{ $followersCount }}</span>
 				<span class="text-gray-600">Followers</span>
 			</span>
 			<span class="text-center px-4">
-				<span class="font-bold text-gray-700">{{ $followings }}</span>
+				<span class="font-bold text-gray-700">{{ $followingsCount }}</span>
 				<span class="text-gray-600">Followings</span>
 			</span>
 

@@ -10,7 +10,11 @@ class ProfilePage extends Component
 	
 	public $followers;
 	
+	public $followersCount;
+	
 	public $followings;
+	
+	public $followingsCount;
 	
 	public $posts;
 	
@@ -19,6 +23,8 @@ class ProfilePage extends Component
 	public function mount()
 	{
 		$this->postsCount = $this->countPosts();
+		$this->followersCount = $this->countFollowers();
+		$this->followingsCount = $this->countFollowing();
 	}
 	
     public function render()
@@ -32,21 +38,13 @@ class ProfilePage extends Component
         return $this->user->posts->count();
     }
 
-    private function countLikes()
+    private function countFollowers()
     {
-        $postsArr = $this->posts->map(function (Post $post) {
-            return $post->likes_count;
-        })->toArray();
-
-        return array_sum($postsArr);
+        return $this->user->followers->count();
     }
-
-    private function countComments()
+    
+    private function countFollowing()
     {
-        $postsArr = $this->posts->map(function (Post $post) {
-            return $post->comments_count;
-        })->toArray();
-
-        return array_sum($postsArr);
+        return $this->user->followings->count();
     }
 }

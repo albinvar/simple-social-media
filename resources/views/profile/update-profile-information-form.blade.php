@@ -58,6 +58,16 @@
             <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
             <x-jet-input-error for="name" class="mt-2" />
         </div>
+        
+        <!-- Profile Visibility -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="visibility" value="{{ __('Account Visibility') }}" />
+            <select id="visibility" class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" wire:model.defer="state.is_private" />
+	            <option value="0"> Public </option>
+				<option value="1"> Private </option>
+            </select>
+            <x-jet-input-error for="is_private" class="mt-2" />
+        </div>
 
         <!-- Username -->
         <div class="col-span-6 sm:col-span-4">

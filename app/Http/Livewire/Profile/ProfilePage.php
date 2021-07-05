@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Follower;
 use Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ProfilePage extends Component
 {
@@ -53,6 +54,8 @@ class ProfilePage extends Component
     
     public function incrementFollow(User $user)
     {
+    	$this->checkIfUserProfile();
+    
         $follow = Follower::where('following_id', Auth::id())
             ->where('follower_id', $user->id);
             
@@ -66,5 +69,10 @@ class ProfilePage extends Component
 	    }
 	
 	return redirect()->route('profile', ['user' => $user->username]);
+    }
+    
+    private function checkIfUserProfile()
+    {
+    	Gate::authorize('is-user-profile', $this->user);
     }
 }

@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Follower extends Model
 {
     use HasFactory;
-    
-       /**
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -18,7 +18,7 @@ class Follower extends Model
         'follower_id',
         'following_id',
     ];
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);

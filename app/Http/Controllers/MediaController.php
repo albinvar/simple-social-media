@@ -14,7 +14,6 @@ class MediaController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -24,7 +23,6 @@ class MediaController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -36,7 +34,6 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
-        
     }
 
     /**
@@ -48,7 +45,6 @@ class MediaController extends Controller
      */
     public function show(Media $media)
     {
-        
     }
 
     /**
@@ -60,7 +56,6 @@ class MediaController extends Controller
      */
     public function edit(Media $media)
     {
-        
     }
 
     /**
@@ -73,7 +68,6 @@ class MediaController extends Controller
      */
     public function update(Request $request, Media $media)
     {
-        
     }
 
     /**
@@ -85,6 +79,5 @@ class MediaController extends Controller
      */
     public function destroy(Media $media)
     {
-        
     }
 }

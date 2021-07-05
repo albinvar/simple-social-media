@@ -2,12 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Models\Post;
 use App\Models\Comment;
-use App\Policies\PostPolicy;
+use App\Models\Post;
+use App\Models\User;
 use App\Policies\CommentPolicy;
-
+use App\Policies\PostPolicy;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -31,6 +32,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-    
+        Gate::define('is-user-profile', function (User $a, User $user) {
+            return $user->id !== auth()->id();
+        });
     }
 }

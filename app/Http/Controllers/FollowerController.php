@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\Follower;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class FollowerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +14,7 @@ class RoleController extends Controller
      */
     public function index()
     {
+        
     }
 
     /**
@@ -23,6 +24,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+        
     }
 
     /**
@@ -34,50 +36,55 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Follower  $follower
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Follower $follower)
     {
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Follower  $follower
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Follower $follower)
     {
+        
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Follower  $follower
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Follower $follower)
     {
+        
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Follower  $follower
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(Follower $follower)
     {
+        
     }
 }

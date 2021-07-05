@@ -6,10 +6,10 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
 use Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\Gate;
 
 class View extends Component
 {
@@ -57,8 +57,6 @@ class View extends Component
             return true;
         }
         $like->delete();
-
-    
     }
 
     public function comments($post)
@@ -115,8 +113,8 @@ class View extends Component
 
     public function deletePost(Post $post)
     {
-    	$response = Gate::inspect('delete', $post);
-    
+        $response = Gate::inspect('delete', $post);
+
         if ($response->allowed()) {
             try {
                 $post->delete();
@@ -133,8 +131,8 @@ class View extends Component
 
     public function deleteComment(Post $post, Comment $comment)
     {
-    	$response = Gate::inspect('delete', [$comment, $post]);
-    
+        $response = Gate::inspect('delete', [$comment, $post]);
+
         if ($response->allowed()) {
             $comment->delete();
             $this->isOpenCommentModal = false;

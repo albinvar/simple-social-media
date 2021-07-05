@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class CommentPolicy
 {
@@ -16,11 +16,12 @@ class CommentPolicy
      * Determine whether the user can view any models.
      *
      * @param  \App\Models\User  $user
+     *
      * @return mixed
      */
     public function viewAny(User $user)
     {
-        //
+        
     }
 
     /**
@@ -28,22 +29,24 @@ class CommentPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Comment  $comment
+     *
      * @return mixed
      */
     public function view(User $user, Comment $comment)
     {
-        //
+        
     }
 
     /**
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
+     *
      * @return mixed
      */
     public function create(User $user)
     {
-        //
+        
     }
 
     /**
@@ -51,11 +54,12 @@ class CommentPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Comment  $comment
+     *
      * @return mixed
      */
     public function update(User $user, Comment $comment)
     {
-        //
+        
     }
 
     /**
@@ -63,13 +67,14 @@ class CommentPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Comment  $comment
+     *
      * @return mixed
      */
     public function delete(User $user, Comment $comment, Post $post)
     {
         return auth()->user()->role_id === 2 || $comment->user->id === auth()->id() || $post->user->id === auth()->id()
-			        ? Response::allow()
-	                : Response::deny('You do not own this comment.');
+                    ? Response::allow()
+                    : Response::deny('You do not own this comment.');
     }
 
     /**
@@ -77,11 +82,12 @@ class CommentPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Comment  $comment
+     *
      * @return mixed
      */
     public function restore(User $user, Comment $comment)
     {
-        //
+        
     }
 
     /**
@@ -89,10 +95,11 @@ class CommentPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Comment  $comment
+     *
      * @return mixed
      */
     public function forceDelete(User $user, Comment $comment)
     {
-        //
+        
     }
 }

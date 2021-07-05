@@ -65,6 +65,6 @@ class ProfilePage extends Component
 	        $follow->delete();
 	    }
 	
-	return redirect()->back();
+	return redirect()->route('profile', ['user' => $user->username]);
     }
 }

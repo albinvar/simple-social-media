@@ -153,7 +153,8 @@ class View extends Component
             ])->latest()->paginate(10);
         } elseif (! empty($this->queryType) && $this->queryType === 'followers') {
         	
-	        $userIds = auth()->user()->followings()->pluck('follower_id');
+	        $userIds = Auth::user()->followings()->pluck('follower_id');
+			$userIds[] = Auth::id();
 	        $posts = Post::withCount(['likes', 'comments'])->whereIn('user_id', $userIds)->with(['userLikes', 'postImages', 'user' => function ($query) {
                 $query->select(['id', 'name', 'username', 'profile_photo_path']);
             },

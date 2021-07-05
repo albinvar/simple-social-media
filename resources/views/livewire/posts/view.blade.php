@@ -19,12 +19,12 @@
                             alt="Social" class="w-full object-scale-down lg:object-cover lg:h-48 rounded-2xl" onContextMenu="return false;">
                         @endforeach
                     </div>
-                    <div class="flex-auto ml-3 justify-evenly py-2">
+                    <div class="flex-auto ml-3 justify-evenly py-2" wire:offline.class="bg-gray text-gray-400">
                     @can('delete', $post)
                     	<button
 							wire:click="showDeletePostModal({{ $post->id }})"
-							wire:offline.class="bg-gray text-gray-400"
                             class="flex float-right items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-red-600 focus:outline-none focus:shadow-outline-gray"
+                            wire:offline.class.remove="text-red-600"
                             aria-label="Delete"
                             wire:loading.class="bg-gray text-gray-400"
                             wire:offline.attr="disabled"
@@ -83,13 +83,13 @@
                             <div class="flex-auto flex space-x-3">
                                 <button
                                     class="mb-2 md:mb-0 bg-white px-5 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full hover:bg-gray-100 inline-flex items-center space-x-2 "
-                                    wire:click="incrementLike({{ $post->id }})">
+                                    wire:click="incrementLike({{ $post->id }})" wire:offline.class="text-gray-400 hover:text-gray-500">
                                     @if($post->userLikes->count())
-                                    <span class="text-green-400 hover:text-green-500 rounded-lg">
+                                    <div class="text-green-400 hover:text-green-500 rounded-lg" wire:offline.class.remove="text-green-400 hover:text-green-500">
                                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-								    <path fill="currentColor" d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z" />
+									    <path fill="currentColor" d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z" />
 									</svg>
-                                    </span>
+                                    </div>
                                     @else
                                     <span class="text-gray-400 hover:text-gray-500 rounded-lg">
                                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">

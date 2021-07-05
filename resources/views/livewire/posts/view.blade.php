@@ -13,19 +13,21 @@
     <div class="flex flex-col my-5">
             <div class="bg-white shadow-md  rounded-3xl p-4">
                 <div class="flex-none lg:flex">
-                    <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
+                    <div class="h-full w-full lg:h-48 lg:w-48 lg:mb-0 mb-3 filter" wire:offline.class="grayscale">
                     	@foreach($post->postImages as $image)
                         <img src="{{ url('/storage/' . $image->path) }}"
-                            alt="Social" class=" w-full  object-scale-down lg:object-cover  lg:h-48 rounded-2xl" onContextMenu="return false;">
+                            alt="Social" class="w-full object-scale-down lg:object-cover lg:h-48 rounded-2xl" onContextMenu="return false;">
                         @endforeach
                     </div>
                     <div class="flex-auto ml-3 justify-evenly py-2">
                     @can('delete', $post)
                     	<button
 							wire:click="showDeletePostModal({{ $post->id }})"
+							wire:offline.class="bg-gray text-gray-400"
                             class="flex float-right items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-red-600 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Delete"
-                            wire:loading.class="bg-gray text-gray-400 "
+                            wire:loading.class="bg-gray text-gray-400"
+                            wire:offline.attr="disabled"
                           >
                             <svg
                               class="w-5 h-5"

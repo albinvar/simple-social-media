@@ -26,30 +26,14 @@ class ProfilePage extends Component
 	
 	public function mount()
 	{
-		$this->postsCount = $this->countPosts();
-		$this->followersCount = $this->countFollowers();
-		$this->followingsCount = $this->countFollowing();
+		$this->postsCount = $this->user->posts_count;
+		$this->followersCount = $this->user->followers_count;
+		$this->followingsCount = $this->user->followings_count;
 	}
 	
     public function render()
     {
         return view('livewire.profile.profile-page');
-    }
-    
-    
-    private function countPosts()
-    {
-        return $this->user->posts->count();
-    }
-
-    private function countFollowers()
-    {
-        return $this->user->followers->count();
-    }
-    
-    private function countFollowing()
-    {
-        return $this->user->followings->count();
     }
     
     public function incrementFollow(User $user)
@@ -68,7 +52,7 @@ class ProfilePage extends Component
 	        $follow->delete();
 	    }
 	
-	return redirect()->route('profile', ['user' => $user->username]);
+		return redirect()->route('profile', ['user' => $user->username]);
     }
     
     private function checkIfUserProfile()

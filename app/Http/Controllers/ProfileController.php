@@ -16,8 +16,9 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($username)
     {
+    	$user = User::with(['isFollowed'])->withCount(['posts', 'followers', 'followings'])->where('username', $username)->firstOrFail();
         $this->posts = Post::select('id')->where('user_id', $user->id)->withCount(['likes', 'comments'])->get();
         return view('profile', ['user' => $user]);
     }

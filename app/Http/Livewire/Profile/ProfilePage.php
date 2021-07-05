@@ -38,7 +38,7 @@ class ProfilePage extends Component
 
     public function incrementFollow(User $user)
     {
-        Gate::authorize('is-user-profile', $this->user);
+        Gate::authorize('is-not-user-profile', $this->user);
 
         $follow = Follower::where('following_id', Auth::id())
             ->where('follower_id', $user->id);

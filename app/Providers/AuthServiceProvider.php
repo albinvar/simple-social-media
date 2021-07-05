@@ -32,7 +32,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('is-user-profile', function (User $a, User $user) {
+        Gate::define('is-not-user-profile', function (User $a, User $user) {
             return $user->id !== auth()->id();
         });
     }

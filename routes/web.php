@@ -23,6 +23,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     })->name('home');
 
     Route::resource('/posts', "App\Http\Controllers\PostController")->name('*', 'posts');
-    Route::get('/followers/post', "App\Http\Controllers\PostController@followers")->name('followers.post');
+    Route::get('/feeds', "App\Http\Controllers\PostController@followers")->name('feeds');
     Route::get('/{username}', "App\Http\Controllers\ProfileController@show")->name('profile');
 });

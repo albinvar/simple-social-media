@@ -17,6 +17,16 @@ class PostController extends Controller
     {
         return view('post.manage');
     }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function followers()
+    {
+        return view('post.followers');
+    }
 
     /**
      * Show the form for creating a new resource.

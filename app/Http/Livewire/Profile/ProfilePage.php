@@ -3,6 +3,9 @@
 namespace App\Http\Livewire\Profile;
 
 use Livewire\Component;
+use App\Models\User;
+use App\Models\Follower;
+use Auth;
 
 class ProfilePage extends Component
 {
@@ -46,5 +49,22 @@ class ProfilePage extends Component
     private function countFollowing()
     {
         return $this->user->followings->count();
+    }
+    
+    public function incrementFollow(User $user)
+    {
+        $follow = Follower::where('following_id', Auth::id())
+            ->where('follower_id', $user->id);
+            
+        if (! $follow->count()) {
+            $new = Follower::create([
+                'following_id' => Auth::id(),
+                'follower_id' => $user->id,
+            ]);
+            return true;
+        }
+        
+        $follow->delete();
+    
     }
 }

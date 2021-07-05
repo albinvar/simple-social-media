@@ -61,10 +61,10 @@ class ProfilePage extends Component
                 'following_id' => Auth::id(),
                 'follower_id' => $user->id,
             ]);
-            return true;
-        }
-        
-        $follow->delete();
-    
+        } else {        
+	        $follow->delete();
+	    }
+	
+	return redirect()->back();
     }
 }

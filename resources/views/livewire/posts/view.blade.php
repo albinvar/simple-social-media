@@ -1,5 +1,12 @@
 <div>
 <link rel='stylesheet' href='https://cdn.plyr.io/3.4.6/plyr.css'>
+<style>
+	.plyr {
+  border-radius: 0.5rem;
+  margin-bottom: 15px;
+}
+</style>
+
 @if(session()->has('success'))
 <div class="bg-green-100 border my-3 border-green-400 text-green-700 dark:bg-green-700 dark:border-green-600 dark:text-green-100 px-4 py-3 rounded relative" role="alert">
   <span class="block sm:inline text-center">{{ session()->get('success') }}</span>

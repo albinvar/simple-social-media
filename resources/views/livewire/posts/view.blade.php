@@ -1,4 +1,5 @@
 <div>
+<link rel='stylesheet' href='https://cdn.plyr.io/3.4.6/plyr.css'>
 @if(session()->has('success'))
 <div class="bg-green-100 border my-3 border-green-400 text-green-700 dark:bg-green-700 dark:border-green-600 dark:text-green-100 px-4 py-3 rounded relative" role="alert">
   <span class="block sm:inline text-center">{{ session()->get('success') }}</span>
@@ -42,5 +43,46 @@
         @include('elements.comments-post-modal')
 
         @include('elements.delete-post-modal')
+        
+         <script src='https://cdn.plyr.io/3.4.6/plyr.js'></script>
+		 <script>
+			document.addEventListener('DOMContentLoaded', () => { 
+  // This is the bare minimum JavaScript. You can opt to pass no arguments to setup.
+  const player = new Plyr('#player');
+  
+  // Expose
+  window.player = player;
+
+  // Bind event listener
+  function on(selector, type, callback) {
+    document.querySelector(selector).addEventListener(type, callback, false);
+  }
+
+  // Play
+  on('.js-play', 'click', () => { 
+    player.play();
+  });
+
+  // Pause
+  on('.js-pause', 'click', () => { 
+    player.pause();
+  });
+
+  // Stop
+  on('.js-stop', 'click', () => { 
+    player.stop();
+  });
+
+  // Rewind
+  on('.js-rewind', 'click', () => { 
+    player.rewind();
+  });
+
+  // Forward
+  on('.js-forward', 'click', () => { 
+    player.forward();
+  });
+});
+		 </script>
         
 </div>

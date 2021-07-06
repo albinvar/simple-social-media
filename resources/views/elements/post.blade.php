@@ -8,7 +8,7 @@
                             alt="Social" class="w-full object-scale-down lg:object-cover lg:h-48 rounded-2xl" onContextMenu="return false;">
                         @elseif(!$media->is_image && preg_match('/^.*\.(mp4|3gp)$/i', $media->path))
 	                     <div class="container">
-						<video controls crossorigin playsinline poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"  class="rounded-lg filter" id="player">
+						<video controls crossorigin playsinline poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"  class="rounded-lg filter player" id="player">
 			                <!-- Video files -->
 			                <source src="{{ url('/storage/' . $media->path) }}" type="video/mp4" size="576">
 			

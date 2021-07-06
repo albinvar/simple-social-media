@@ -3,7 +3,7 @@
     <div class="w-11/12 lg:w-full md:w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden rounded-lg mb-12">
          <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" wire:submit.prevent="submit" >
+        <form method="POST" wire:submit.prevent="submit" enctype="multipart/form-data">
             @csrf
             
             <div>
@@ -26,7 +26,7 @@
                 <x-jet-label value="{{ __('Preview :') }}" />
                 
                @if(in_array($file->extension(), $this->imageFormats))
-               <img class="p-3 h-32" src="{{ $file->temporaryUrl() }}">
+               <img class="p-3 h-32" src="{{ $file->temporaryUrl() }}" oncontextmenu="return false;">
                @elseif(in_array($file->extension(), $this->videoFormats))
                <video controls crossorigin playsinline oncontextmenu="return false;" controlsList="nodownload" class="rounded-lg filter" >
 			                <!-- Video files -->
@@ -62,7 +62,7 @@
             <div wire:loading class="my-3" wire:target="file">Uploading...</div>
             
 	        <!-- Progress Bar -->
-		    <div x-show="isUploading">
+		    <div x-show="isUploading" class="my-2">
 		        <progress max="100" x-bind:value="progress"></progress>
 		    </div>
 		</div>

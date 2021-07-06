@@ -2,21 +2,35 @@
             <div class="bg-white shadow-md  rounded-3xl p-4">
                 <div class="flex-none lg:flex">
                     <div class="h-full w-full lg:h-48 lg:w-48 lg:mb-0 mb-3 filter" wire:offline.class="grayscale">
-                    	@foreach($post->postImages as $image)
-                        <img src="{{ url('/storage/' . $image->path) }}"
+                    	@foreach($post->postImages as $media)
+	                    @if($media->is_image && preg_match('/^.*\.(png|jpg|gif)$/i', $media->path))
+                        <img src="{{ url('/storage/' . $media->path) }}"
                             alt="Social" class="w-full object-scale-down lg:object-cover lg:h-48 rounded-2xl" onContextMenu="return false;">
+                        @elseif(!$media->is_image && preg_match('/^.*\.(mp4|3gp)$/i', $media->path))
+	                     <div class="container">
+						<video controls crossorigin playsinline oncontextmenu="return false;" controlsList="nodownload" class="rounded-lg filter" id="player_{{ $post->id }}">
+			                <!-- Video files -->
+			                <source src="{{ url('/storage/' . $media->path) }}" type="video/mp4" size="576">
+			
+			                <!-- Fallback for browsers that don't support the <video> element -->
+			                <a href="{{ url('/storage/' . $media->path) }}" download>Download</a>
+			            </video>
+						</div>
+                        @endif
                         @endforeach
                     </div>
-                    <div class="flex-auto ml-3 justify-evenly py-2" wire:offline.class="bg-gray text-gray-400">
+                    <div class="flex-auto ml-3 justify-evenly py-2" wire:offline.class="text-gray-400">
                     @can('delete', $post)
                     	<button
 							id="delete_{{ $post->id }}"
-							wire:offline.attr="disabled"
 							wire:click="showDeletePostModal({{ $post->id }})"
                             class="flex float-right items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-red-600 focus:outline-none focus:shadow-outline-gray"
                             wire:offline.class.remove="text-red-600"
+                            wire:offline.class="text-gray-400"
                             aria-label="Delete"
+                            wire:loading.class.remove="text-red-600"
                             wire:loading.class="bg-gray text-gray-400"
+                            wire:offline.attr="disabled"
                           >
                             <svg
                               class="w-5 h-5"
@@ -34,9 +48,9 @@
                          @endcan
                         <div class="flex flex-wrap ">
                         	
-                            <div class="w-full flex-none mb-2 text-xs text-blue-700 font-medium">
+                            <div class="w-full flex-none mb-2 text-xs text-blue-700 font-medium" wire:offline.class.remove="text-blue-700" wire:offline.class="text-gray-400">
                             	<a href="{{ route('profile', ['username' => $post->user->username]) }}">
-                            	<img class="inline-block object-cover w-8 h-8 mr-1 text-white rounded-full shadow-sm cursor-pointer" src="{{ $post->user->profile_photo_url }}" alt="{{ $post->user->name }}" />
+                            	<img class="inline-block object-cover w-8 h-8 mr-1 text-white rounded-full shadow-sm cursor-pointer" wire:offline.class="filter grayscale" src="{{ $post->user->profile_photo_url }}" alt="{{ $post->user->name }}" />
                                 Posted by {{ '@' . $post->user->username }}
                                 </a>
                             </div>

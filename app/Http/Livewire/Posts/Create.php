@@ -16,16 +16,13 @@ class Create extends Component
 
     public $body;
 
-    public $photo;
+    public $file;
 
     public $location;
 
-    protected $rules = [
-        'title' => 'required|max:50',
-        'location' => 'nullable|string|max:60',
-        'body' => 'required|max:1000',
-        'photo' => 'nullable|image|max:1024',
-    ];
+    public $imageFormats = ['jpg', 'png', 'gif', 'jpeg'];
+
+    public $videoFormats = ['mp4', '3gp'];
 
     public function mount()
     {
@@ -39,16 +36,21 @@ class Create extends Component
         }
     }
 
-    public function updatedPhoto()
+    public function updatedFile()
     {
         $this->validate([
-            'photo' => 'image|max:1024',
+            'file' => 'mimes:' . implode(',', array_merge($this->imageFormats, $this->videoFormats)) . '|max:2048',
         ]);
     }
 
     public function submit()
     {
-        $data = $this->validate();
+        $data = $this->validate([
+            'title' => 'required|max:50',
+            'location' => 'nullable|string|max:60',
+            'body' => 'required|max:1000',
+            'file' => 'nullable|mimes:' . implode(',', array_merge($this->imageFormats, $this->videoFormats)) . '|max:2048',
+        ]);
 
         $post = Post::create([
             'user_id' => auth()->id(),
@@ -57,7 +59,7 @@ class Create extends Component
             'body' => $data['body'],
         ]);
 
-        $this->storeImages($post);
+        $this->storeFiles($post);
 
         session()->flash('success', 'Post created successfully');
 
@@ -69,18 +71,20 @@ class Create extends Component
         return view('livewire.posts.create');
     }
 
-    private function storeImages($post)
+    private function storeFiles($post)
     {
-        if (empty($this->photo)) {
+        if (empty($this->file)) {
             return true;
         }
 
-        $path = $this->photo->store('post-photos', 'public');
+        $path = $this->file->store('post-photos', 'public');
+
+        $isImage = preg_match('/^.*\.(png|jpg|gif)$/i', $path);
 
         $media = Media::create([
             'post_id' => $post->id,
             'path' => $path,
-            'is_image' => true,
+            'is_image' => $isImage,
         ]);
     }
 

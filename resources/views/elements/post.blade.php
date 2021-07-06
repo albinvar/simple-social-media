@@ -8,7 +8,7 @@
                             alt="Social" class="w-full object-scale-down lg:object-cover lg:h-48 rounded-2xl" onContextMenu="return false;">
                         @elseif(!$media->is_image && preg_match('/^.*\.(mp4|3gp)$/i', $media->path))
 	                     <div class="container">
-						<video controls crossorigin playsinline   class="rounded-lg filter" id="player_{{ $post->id }}">
+						<video controls crossorigin playsinline oncontextmenu="return false;" controlsList="nodownload" class="rounded-lg filter" id="player_{{ $post->id }}">
 			                <!-- Video files -->
 			                <source src="{{ url('/storage/' . $media->path) }}" type="video/mp4" size="576">
 			

@@ -1,5 +1,7 @@
 <div>
+	
 <link rel='stylesheet' href='https://cdn.plyr.io/3.4.6/plyr.css'>
+
 <style>
 	.plyr {
   border-radius: 0.5rem;

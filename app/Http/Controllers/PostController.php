@@ -17,7 +17,7 @@ class PostController extends Controller
     {
         return view('post.manage');
     }
-    
+
     /**
      * Display a listing of the resource.
      *

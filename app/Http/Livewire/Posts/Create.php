@@ -19,9 +19,9 @@ class Create extends Component
     public $file;
 
     public $location;
-    
+
     public $imageFormats = ['jpg', 'png', 'gif', 'jpeg'];
-    
+
     public $videoFormats = ['mp4', '3gp'];
 
     public function mount()
@@ -39,18 +39,18 @@ class Create extends Component
     public function updatedFile()
     {
         $this->validate([
-            'file' => 'mimes:' . implode(',',  array_merge($this->imageFormats, $this->videoFormats)) . '|max:2048',
+            'file' => 'mimes:' . implode(',', array_merge($this->imageFormats, $this->videoFormats)) . '|max:2048',
         ]);
     }
 
     public function submit()
     {
         $data = $this->validate([
-        'title' => 'required|max:50',
-        'location' => 'nullable|string|max:60',
-        'body' => 'required|max:1000',
-        'file' => 'nullable|mimes:' . implode(',',  array_merge($this->imageFormats, $this->videoFormats)) . '|max:2048',
-	    ]);
+            'title' => 'required|max:50',
+            'location' => 'nullable|string|max:60',
+            'body' => 'required|max:1000',
+            'file' => 'nullable|mimes:' . implode(',', array_merge($this->imageFormats, $this->videoFormats)) . '|max:2048',
+        ]);
 
         $post = Post::create([
             'user_id' => auth()->id(),
@@ -78,7 +78,7 @@ class Create extends Component
         }
 
         $path = $this->file->store('post-photos', 'public');
-        
+
         $isImage = preg_match('/^.*\.(png|jpg|gif)$/i', $path);
 
         $media = Media::create([

@@ -24,17 +24,21 @@
             @if($file)
             <div class="mt-4">
                 <x-jet-label value="{{ __('Preview :') }}" />
-                {{ $file->extension() }}
-               @if(preg_match('/^.*\.(png|jpg|gif)$/i', $file->temporaryUrl()))
+                
+               @if(in_array($file->extension(), $this->imageFormats))
                <img class="p-3 h-32" src="{{ $file->temporaryUrl() }}">
-               @elseif(preg_match('/^.*\.(mp4|3gp)$/i', $file->temporaryUrl()))
-               <video controls crossorigin playsinline oncontextmenu="return false;" controlsList="nodownload" class="rounded-lg filter" id="player_{{ $post->id }}">
+               @elseif(in_array($file->extension(), $this->videoFormats))
+               <video controls crossorigin playsinline oncontextmenu="return false;" controlsList="nodownload" class="rounded-lg filter" >
 			                <!-- Video files -->
-			                <source src="{{ $file->temporaryUrl() }}" type="video/mp4" size="576">
+			                <source src="{{ $file->temporaryUrl() }}" type="video/{{ $file->extension() }}" size="576">
 			
 			                <!-- Fallback for browsers that don't support the <video> element -->
 			                <a href="{{ $file->temporaryUrl() }}" download>Download</a>
 			            </video>
+			   @else
+			
+				<p class="text-red-700 text-sm my-3">Invalid File selected. You can only upload {{ implode(', ',  array_merge($this->imageFormats, $this->videoFormats)) }} file types. </p>
+				
                @endif
             </div>
             @endif

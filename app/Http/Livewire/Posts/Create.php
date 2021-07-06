@@ -16,7 +16,7 @@ class Create extends Component
 
     public $body;
 
-    public $photo;
+    public $file;
 
     public $location;
 
@@ -24,7 +24,7 @@ class Create extends Component
         'title' => 'required|max:50',
         'location' => 'nullable|string|max:60',
         'body' => 'required|max:1000',
-        'photo' => 'nullable|image|max:1024',
+        'file' => 'nullable|mimes:mp4,3gpp,png,jpg,gif|max:2048',
     ];
 
     public function mount()
@@ -39,10 +39,10 @@ class Create extends Component
         }
     }
 
-    public function updatedPhoto()
+    public function updatedFile()
     {
         $this->validate([
-            'photo' => 'image|max:1024',
+            'file' => 'mimes:mp4,3gpp,png,jpg,gif|max:2048',
         ]);
     }
 
@@ -57,7 +57,7 @@ class Create extends Component
             'body' => $data['body'],
         ]);
 
-        $this->storeImages($post);
+        $this->storeFiles($post);
 
         session()->flash('success', 'Post created successfully');
 
@@ -69,13 +69,13 @@ class Create extends Component
         return view('livewire.posts.create');
     }
 
-    private function storeImages($post)
+    private function storeFiles($post)
     {
-        if (empty($this->photo)) {
+        if (empty($this->file)) {
             return true;
         }
 
-        $path = $this->photo->store('post-photos', 'public');
+        $path = $this->file->store('post-photos', 'public');
 
         $media = Media::create([
             'post_id' => $post->id,

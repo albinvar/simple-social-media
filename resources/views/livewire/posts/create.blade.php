@@ -21,10 +21,10 @@
                <textarea rows="5" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow" wire:model="body"> </textarea>
             </div>
             
-            @if($photo)
+            @if($file)
             <div class="mt-4">
                 <x-jet-label value="{{ __('Image Preview :') }}" />
-               <img class="p-3 h-32" src="{{ $photo->temporaryUrl() }}">
+               <img class="p-3 h-32" src="{{ $file->temporaryUrl() }}">
             </div>
             @endif
             
@@ -39,12 +39,12 @@
             
             <div class="mt-4">
                 <x-jet-label for="body" value="{{ __('Image') }}" />
-               <input type="file" wire:model="photo">
+               <input type="file" wire:model="file">
             </div>
             
             
             
-            <div wire:loading class="my-3" wire:target="photo">Uploading...</div>
+            <div wire:loading class="my-3" wire:target="file">Uploading...</div>
             
 	        <!-- Progress Bar -->
 		    <div x-show="isUploading">

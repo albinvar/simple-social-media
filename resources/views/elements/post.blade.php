@@ -2,9 +2,14 @@
             <div class="bg-white shadow-md  rounded-3xl p-4">
                 <div class="flex-none lg:flex">
                     <div class="h-full w-full lg:h-48 lg:w-48 lg:mb-0 mb-3 filter" wire:offline.class="grayscale">
-                    	@foreach($post->postImages as $image)
-                        <img src="{{ url('/storage/' . $image->path) }}"
+                    	@foreach($post->postImages as $media)
+	                    @php $array = explode(".",$media->path); @endphp
+	                    @if($media->is_image)
+                        <img src="{{ url('/storage/' . $media->path) }}"
                             alt="Social" class="w-full object-scale-down lg:object-cover lg:h-48 rounded-2xl" onContextMenu="return false;">
+                        @elseif(strtolower(end($array)) == "mp4")
+	                        video
+                        @endif
                         @endforeach
                     </div>
                     <div class="flex-auto ml-3 justify-evenly py-2" wire:offline.class="bg-gray text-gray-400">

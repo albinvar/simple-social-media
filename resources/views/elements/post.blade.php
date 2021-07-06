@@ -3,11 +3,10 @@
                 <div class="flex-none lg:flex">
                     <div class="h-full w-full lg:h-48 lg:w-48 lg:mb-0 mb-3 filter" wire:offline.class="grayscale">
                     	@foreach($post->postImages as $media)
-	                    @php $array = explode(".",$media->path); @endphp
-	                    @if($media->is_image)
+	                    @if($media->is_image && preg_match('/^.*\.(png|jpg|gif)$/i', $media->path))
                         <img src="{{ url('/storage/' . $media->path) }}"
                             alt="Social" class="w-full object-scale-down lg:object-cover lg:h-48 rounded-2xl" onContextMenu="return false;">
-                        @elseif(strtolower(end($array)) == "mp4")
+                        @elseif(!$media->path && preg_match('/^.*\.(mp4|3gp)$/i', $media->path))
 	                        video
                         @endif
                         @endforeach

@@ -1,5 +1,6 @@
 <div>
-	
+
+@section('styles')
 <link rel='stylesheet' href='https://cdn.plyr.io/3.4.6/plyr.css'>
 
 <style>
@@ -8,6 +9,7 @@
   margin-bottom: 15px;
 }
 </style>
+@endsection
 
 @if(session()->has('success'))
 <div class="bg-green-100 border my-3 border-green-400 text-green-700 dark:bg-green-700 dark:border-green-600 dark:text-green-100 px-4 py-3 rounded relative" role="alert">
@@ -53,6 +55,7 @@
 
         @include('elements.delete-post-modal')
         
+        @section('scripts')
          <script src='https://cdn.plyr.io/3.4.6/plyr.js'></script>
 		 <script>
 			document.addEventListener('DOMContentLoaded', () => { 
@@ -104,5 +107,6 @@
   });
 });
 		 </script>
+		@endsection
         
 </div>

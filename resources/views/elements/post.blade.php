@@ -7,7 +7,15 @@
                         <img src="{{ url('/storage/' . $media->path) }}"
                             alt="Social" class="w-full object-scale-down lg:object-cover lg:h-48 rounded-2xl" onContextMenu="return false;">
                         @elseif(!$media->is_image && preg_match('/^.*\.(mp4|3gp)$/i', $media->path))
-	                        video
+	                     <div class="container">
+						<video controls crossorigin playsinline poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"  class="rounded-lg filter" id="player">
+			                <!-- Video files -->
+			                <source src="{{ url('/storage/' . $media->path) }}" type="video/mp4" size="576">
+			
+			                <!-- Fallback for browsers that don't support the <video> element -->
+			                <a href="{{ url('/storage/' . $media->path) }}" download>Download</a>
+			            </video>
+						</div>
                         @endif
                         @endforeach
                     </div>

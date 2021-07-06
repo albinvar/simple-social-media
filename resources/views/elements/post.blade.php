@@ -6,7 +6,7 @@
 	                    @if($media->is_image && preg_match('/^.*\.(png|jpg|gif)$/i', $media->path))
                         <img src="{{ url('/storage/' . $media->path) }}"
                             alt="Social" class="w-full object-scale-down lg:object-cover lg:h-48 rounded-2xl" onContextMenu="return false;">
-                        @elseif(!$media->path && preg_match('/^.*\.(mp4|3gp)$/i', $media->path))
+                        @elseif(!$media->is_image && preg_match('/^.*\.(mp4|3gp)$/i', $media->path))
 	                        video
                         @endif
                         @endforeach

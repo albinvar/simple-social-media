@@ -76,11 +76,13 @@ class Create extends Component
         }
 
         $path = $this->file->store('post-photos', 'public');
+        
+        $isImage = preg_match('/^.*\.(png|jpg|gif)$/i', $path);
 
         $media = Media::create([
             'post_id' => $post->id,
             'path' => $path,
-            'is_image' => true,
+            'is_image' => $isImage,
         ]);
     }
 

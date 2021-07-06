@@ -19,16 +19,18 @@
                         @endif
                         @endforeach
                     </div>
-                    <div class="flex-auto ml-3 justify-evenly py-2" wire:offline.class="bg-gray text-gray-400">
+                    <div class="flex-auto ml-3 justify-evenly py-2" wire:offline.class="text-gray-400">
                     @can('delete', $post)
                     	<button
 							id="delete_{{ $post->id }}"
-							wire:offline.attr="disabled"
 							wire:click="showDeletePostModal({{ $post->id }})"
                             class="flex float-right items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-red-600 focus:outline-none focus:shadow-outline-gray"
                             wire:offline.class.remove="text-red-600"
+                            wire:offline.class="text-gray-400"
                             aria-label="Delete"
+                            wire:loading.class.remove="text-red-600"
                             wire:loading.class="bg-gray text-gray-400"
+                            wire:offline.attr="disabled"
                           >
                             <svg
                               class="w-5 h-5"
@@ -46,9 +48,9 @@
                          @endcan
                         <div class="flex flex-wrap ">
                         	
-                            <div class="w-full flex-none mb-2 text-xs text-blue-700 font-medium">
+                            <div class="w-full flex-none mb-2 text-xs text-blue-700 font-medium" wire:offline.class.remove="text-blue-700" wire:offline.class="text-gray-400">
                             	<a href="{{ route('profile', ['username' => $post->user->username]) }}">
-                            	<img class="inline-block object-cover w-8 h-8 mr-1 text-white rounded-full shadow-sm cursor-pointer" src="{{ $post->user->profile_photo_url }}" alt="{{ $post->user->name }}" />
+                            	<img class="inline-block object-cover w-8 h-8 mr-1 text-white rounded-full shadow-sm cursor-pointer" wire:offline.class="filter grayscale" src="{{ $post->user->profile_photo_url }}" alt="{{ $post->user->name }}" />
                                 Posted by {{ '@' . $post->user->username }}
                                 </a>
                             </div>

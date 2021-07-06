@@ -48,10 +48,21 @@
 		 <script>
 			document.addEventListener('DOMContentLoaded', () => { 
   // This is the bare minimum JavaScript. You can opt to pass no arguments to setup.
-  const players = Plyr.setup('video', {captions: {active: true}});
+  const player = Plyr.setup('video', { captions: {active: true}, tooltips: {controls: true, seek: true} });
   
   // Expose
   window.player = player;
+  
+  for (var i in player) {
+     player[i].on('play', function (instance) {
+       var source = instance.detail.plyr.source;
+       for (var x in player) {
+         if (player[x].source != source) {
+          player[x].pause();
+         }
+       }
+     });
+    }
 
   // Bind event listener
   function on(selector, type, callback) {

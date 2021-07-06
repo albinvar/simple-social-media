@@ -40,7 +40,7 @@ class CleanTemporaryUploads extends Command
     {
     	try {
 			$file = new Filesystem;
-			$file->cleanDirectory('storage/app/livewire-tmp');
+			$file->cleanDirectory(storage_path('app/livewire-tmp'));
 			$this->comment('Temporary uploads cleared successfully');
 		} catch(\Exception $e) {
 			$this->error('Error encountered -> ' . $e->getMessage());

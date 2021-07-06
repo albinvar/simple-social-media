@@ -38,15 +38,15 @@ class CleanTemporaryUploads extends Command
      */
     public function handle()
     {
-    	try {
-			$file = new Filesystem;
-			$file->cleanDirectory(storage_path('app/livewire-tmp'));
-			$this->comment('Temporary uploads cleared successfully');
-		} catch(\Exception $e) {
-			$this->error('Error encountered -> ' . $e->getMessage());
-			return 0;
-		}
-		
-		return 1;
+        try {
+            $file = new Filesystem();
+            $file->cleanDirectory(storage_path('app/livewire-tmp'));
+            $this->comment('Temporary uploads cleared successfully');
+        } catch (\Exception $e) {
+            $this->error('Error encountered -> ' . $e->getMessage());
+            return 0;
+        }
+
+        return 1;
     }
 }

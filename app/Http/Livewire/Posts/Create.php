@@ -19,13 +19,10 @@ class Create extends Component
     public $file;
 
     public $location;
-
-    protected $rules = [
-        'title' => 'required|max:50',
-        'location' => 'nullable|string|max:60',
-        'body' => 'required|max:1000',
-        'file' => 'nullable|mimes:mp4,3gpp,png,jpg,gif|max:2048',
-    ];
+    
+    public $imageFormats = ['jpg', 'png', 'gif', 'jpeg'];
+    
+    public $videoFormats = ['mp4', '3gp'];
 
     public function mount()
     {
@@ -42,13 +39,18 @@ class Create extends Component
     public function updatedFile()
     {
         $this->validate([
-            'file' => 'mimes:mp4,3gpp,png,jpg,gif|max:2048',
+            'file' => 'mimes:' . implode(',',  array_merge($this->imageFormats, $this->videoFormats)) . '|max:2048',
         ]);
     }
 
     public function submit()
     {
-        $data = $this->validate();
+        $data = $this->validate([
+        'title' => 'required|max:50',
+        'location' => 'nullable|string|max:60',
+        'body' => 'required|max:1000',
+        'file' => 'nullable|mimes:' . implode(',',  array_merge($this->imageFormats, $this->videoFormats)) . '|max:2048',
+	    ]);
 
         $post = Post::create([
             'user_id' => auth()->id(),

@@ -23,8 +23,19 @@
             
             @if($file)
             <div class="mt-4">
-                <x-jet-label value="{{ __('Image Preview :') }}" />
+                <x-jet-label value="{{ __('Preview :') }}" />
+                {{ $file->extension() }}
+               @if(preg_match('/^.*\.(png|jpg|gif)$/i', $file->temporaryUrl()))
                <img class="p-3 h-32" src="{{ $file->temporaryUrl() }}">
+               @elseif(preg_match('/^.*\.(mp4|3gp)$/i', $file->temporaryUrl()))
+               <video controls crossorigin playsinline oncontextmenu="return false;" controlsList="nodownload" class="rounded-lg filter" id="player_{{ $post->id }}">
+			                <!-- Video files -->
+			                <source src="{{ $file->temporaryUrl() }}" type="video/mp4" size="576">
+			
+			                <!-- Fallback for browsers that don't support the <video> element -->
+			                <a href="{{ $file->temporaryUrl() }}" download>Download</a>
+			            </video>
+               @endif
             </div>
             @endif
             
@@ -38,7 +49,7 @@
 			>
             
             <div class="mt-4">
-                <x-jet-label for="body" value="{{ __('Image') }}" />
+                <x-jet-label for="body" value="{{ __('Media') }}" />
                <input type="file" wire:model="file">
             </div>
             

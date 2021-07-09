@@ -14,7 +14,7 @@
             
             <form wire:submit.prevent="createComment({{ $postId }})" >
                 <div class="mt-4" >
-                    <textarea class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block" wire:model="comment"
+                    <textarea class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block" wire:model.lazy="comment"
                                 placeholder="{{ __('Your comment') }}"
                                 /> </textarea>
                     <x-jet-input-error for="comment" class="mt-2" />

@@ -1,7 +1,7 @@
 <div class="flex flex-col my-5">
             <div class="bg-white shadow-md  rounded-3xl p-4">
                 <div class="flex-none lg:flex">
-                    <div class="h-full w-full lg:h-48 lg:w-48 lg:mb-0 mb-3 filter" wire:offline.class="grayscale">
+                    <div class="h-full w-full lg:h-100 lg:w-full lg:mb-3 mb-3 filter" wire:offline.class="grayscale">
                     	@foreach($post->postImages as $media)
 	                    @if($media->is_image && preg_match('/^.*\.(png|jpg|gif)$/i', $media->path))
                         <img src="{{ url('/storage/' . $media->path) }}"

@@ -22,7 +22,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         return view('home');
     })->name('home');
 
-    Route::resource('/posts', "App\Http\Controllers\PostController")->name('*', 'posts');
+    Route::resource('/posts', "App\Http\Controllers\PostController")->names('posts');
     Route::get('/feeds', "App\Http\Controllers\PostController@followers")->name('feeds');
+    Route::resource('/manage/users', "App\Http\Controllers\UserController")->names('users');
     Route::get('/{username}', "App\Http\Controllers\ProfileController@show")->name('profile');
 });

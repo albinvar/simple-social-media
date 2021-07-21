@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class UserPolicy
 {
@@ -17,7 +18,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->isAdmin();
     }
 
     /**
@@ -29,7 +30,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        //
+        return $user->isAdmin();
     }
 
     /**

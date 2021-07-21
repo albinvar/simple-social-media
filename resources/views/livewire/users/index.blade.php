@@ -55,9 +55,9 @@
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                <ul>
-                <li class="text-sm text-gray-900">Followers : <span class="text-gray-500"> {{ $user->followers_count }} </span></li>
-                <li class="text-sm text-gray-900">Followings : <span class="text-gray-500"> {{ $user->followings_count }} </span></li>
-                <li class="text-sm text-gray-900">Posts : <span class="text-gray-500"> {{ $user->posts_count }} </span></li>
+                <li class="text-sm text-gray-900">Followers : <span class="text-green-500"> {{ $user->followers_count }} </span></li>
+                <li class="text-sm text-gray-900">Followings : <span class="text-red-500"> {{ $user->followings_count }} </span></li>
+                <li class="text-sm text-gray-900">Posts : <span class="text-blue-500"> {{ $user->posts_count }} </span></li>
                </ul>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">

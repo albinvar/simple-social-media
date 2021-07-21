@@ -10,7 +10,7 @@
                 Name
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Username
+                Account
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Details
@@ -77,7 +77,7 @@
                 @endif
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                <a href="{{ route('users.edit', ['user' => $user->id ]) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <a href="#" class="text-red-600 hover:text-red-900">Delete</a>

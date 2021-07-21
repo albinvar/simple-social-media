@@ -19,5 +19,13 @@ class UserController extends Controller
     
         return view('users.index');
     }
+    
+    
+    public function edit(User $user)
+    {
+    	$this->authorize('viewAny', auth()->user());
+    
+        return view('users.edit', compact('user'));
+    }
 
 }

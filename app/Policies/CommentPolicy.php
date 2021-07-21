@@ -21,7 +21,6 @@ class CommentPolicy
      */
     public function viewAny(User $user)
     {
-        
     }
 
     /**
@@ -34,7 +33,6 @@ class CommentPolicy
      */
     public function view(User $user, Comment $comment)
     {
-        
     }
 
     /**
@@ -46,7 +44,6 @@ class CommentPolicy
      */
     public function create(User $user)
     {
-        
     }
 
     /**
@@ -59,7 +56,6 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment)
     {
-        
     }
 
     /**
@@ -87,7 +83,6 @@ class CommentPolicy
      */
     public function restore(User $user, Comment $comment)
     {
-        
     }
 
     /**
@@ -100,6 +95,5 @@ class CommentPolicy
      */
     public function forceDelete(User $user, Comment $comment)
     {
-        
     }
 }

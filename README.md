@@ -44,6 +44,10 @@ The application is designed and tested to use conveniently without any issues.
 - Run the migration and seeder
 
 ```
+php artisan setup
+```
+or
+```
 php artisan migrate --seed
 ```
 
@@ -94,9 +98,18 @@ You may use these credentials to log into your website. you can change these cre
 ## Generating Dummy Data
 
 Creates dummy data using faker library.
-
+```
+php artisan setup:dummy
+```
+or 
 ```
 php artisan db:seed --class="DummyDataSeeder"
+```
+
+## Clear Temporary Files
+All files uploaded from Create Post form is stored on storage/app/livewire-tmp folder. The following command cleana all Temporary Files from server.
+```
+php artisan clean:temp
 ```
 
 ## Tests

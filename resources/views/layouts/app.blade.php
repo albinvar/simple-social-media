@@ -12,11 +12,13 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        @yield('styles')
 
         @livewireStyles
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        @yield('scripts')
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />

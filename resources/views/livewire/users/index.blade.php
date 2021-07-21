@@ -30,6 +30,7 @@
           @foreach($users as $user)
             <tr>
               <td class="px-6 py-4 whitespace-nowrap">
+               <a href="{{ route('profile', ['username' => $user->username]) }}">
                 <div class="flex items-center">
                   <div class="flex-shrink-0 h-10 w-10">
                   
@@ -44,16 +45,19 @@
                     </div>
                   </div>
                 </div>
+                </a>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
+              <a href="{{ route('profile', ['username' => $user->username]) }}">
                 <div class="text-sm text-gray-900">{{ '@'. $user->username }}</div>
                 <div class="text-sm text-gray-500">@if($user->is_private) Private @else Public @endif</div>
+               </a>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                <ul>
-                <li class="text-sm text-gray-900">Followers : <span> {{ $user->followers_count }} </span></li>
-                <li class="text-sm text-gray-900">Followings : <span class=""> {{ $user->followings_count }} </span></li>
-                <li class="text-sm text-gray-900">Posts : <span class=""> {{ $user->posts_count }} </span></li>
+                <li class="text-sm text-gray-900">Followers : <span class="text-gray-500"> {{ $user->followers_count }} </span></li>
+                <li class="text-sm text-gray-900">Followings : <span class="text-gray-500"> {{ $user->followings_count }} </span></li>
+                <li class="text-sm text-gray-900">Posts : <span class="text-gray-500"> {{ $user->posts_count }} </span></li>
                </ul>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
@@ -73,7 +77,7 @@
               </td>
             </tr>
             @endforeach
-
+            
             <!-- More people... -->
           </tbody>
         </table>

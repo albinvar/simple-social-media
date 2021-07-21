@@ -12,7 +12,7 @@ class Index extends Component
 	
 	public function mount()
 	{
-		$this->users = User::all();
+		$this->users = User::withCount(['posts', 'followers', 'followings'])->latest()->get();
 	}
 	
     public function render()

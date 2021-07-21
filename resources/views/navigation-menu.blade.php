@@ -28,7 +28,7 @@
                         {{ __('My Posts') }}
                     </x-jet-nav-link>
                     
-                    <x-jet-nav-link href="{{ route('users.create') }}" :active="request()->routeIs('users.create')">
+                    <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.create')">
 		                {{ __('Manage Users') }}
 		            </x-jet-nav-link>
                 </div>
@@ -170,7 +170,7 @@
                 {{ __('My Posts') }}
             </x-jet-responsive-nav-link>
             
-            <x-jet-responsive-nav-link href="{{ route('users.create') }}" :active="request()->routeIs('users.create')">
+            <x-jet-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.create')">
                 {{ __('Manage Users') }}
             </x-jet-responsive-nav-link>
         </div>

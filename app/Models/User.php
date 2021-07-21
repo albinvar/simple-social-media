@@ -28,8 +28,6 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'is_banned',
-        'is_private',
     ];
 
     /**
@@ -50,6 +48,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
+	    'is_banned' => 'boolean',
+        'is_private' => 'boolean',
         'email_verified_at' => 'datetime',
     ];
 

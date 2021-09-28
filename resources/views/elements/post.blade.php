@@ -1,11 +1,11 @@
 <div class="flex flex-col my-5">
             <div class="bg-white shadow-md  rounded-3xl p-4">
-                <div class="flex-none lg:flex">
-                    <div class="h-full w-full lg:h-100 lg:w-full lg:mb-3 mb-3 filter" wire:offline.class="grayscale">
+                <div class="flex-none">
+                    <div class="h-full w-full  mb-3 filter" wire:offline.class="grayscale">
                     	@foreach($post->postImages as $media)
 	                    @if($media->is_image && preg_match('/^.*\.(png|jpg|gif)$/i', $media->path))
                         <img src="{{ url('/storage/' . $media->path) }}"
-                            alt="Social" class="w-full object-scale-down lg:object-cover lg:h-48 rounded-2xl" onContextMenu="return false;">
+                            alt="Social" class="w-full object-scale-down md:object-cover lg:object-cover rounded-2xl" onContextMenu="return false;">
                         @elseif(!$media->is_image && preg_match('/^.*\.(mp4|3gp)$/i', $media->path))
 	                     <div class="container">
 						<video controls crossorigin playsinline oncontextmenu="return false;" controlsList="nodownload" class="rounded-lg filter" id="player_{{ $post->id }}">

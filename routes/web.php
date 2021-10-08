@@ -17,6 +17,11 @@ Route::get('/', function () {
     return redirect(route('home'));
 });
 
+// Temporary fix for unknown bug.
+Route::get('/favicon.ico', function () {
+    return redirect(route('home'));
+});
+
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/home', function () {
         return view('home');

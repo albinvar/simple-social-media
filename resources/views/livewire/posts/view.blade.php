@@ -26,8 +26,8 @@
       @include('elements.post')
       
     @empty
-        <div class="flex flex-col my-12 md:mt-56 lg:mt-56">
-            <div class="bg-white shadow-md  rounded-3xl p-4">
+        <div class="flex flex-col m-2 lg:m-56 my-12 md:mt-56 lg:mt-56">
+            <div class="bg-white shadow-md rounded-3xl p-4">
                 <div class="flex-none">
                     <div class=" h-full w-full mb-3">
                         <img src="{{ asset('images/no-posts.png') }}"

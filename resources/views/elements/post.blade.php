@@ -1,4 +1,4 @@
-<div class="flex flex-col my-5">
+<div class="flex flex-col mx-6 my-6 md:my-12 lg:mx-56">
             <div class="bg-white shadow-md  rounded-3xl p-4">
                 <div class="flex-none">
                     <div class="h-full w-full  mb-3 filter" wire:offline.class="grayscale">

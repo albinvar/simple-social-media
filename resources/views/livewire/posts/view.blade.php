@@ -26,12 +26,12 @@
       @include('elements.post')
       
     @empty
-        <div class="flex flex-col my-12 md:mt-56 lg:mt-56">
-            <div class="bg-white shadow-md  rounded-3xl p-4">
-                <div class="flex-none lg:flex">
-                    <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
+        <div class="flex flex-col m-2 lg:m-56 my-12 md:mt-56 lg:mt-56">
+            <div class="bg-white shadow-md rounded-3xl p-4">
+                <div class="flex-none">
+                    <div class=" h-full w-full mb-3">
                         <img src="{{ asset('images/no-posts.png') }}"
-                            alt="Just a flower" class=" w-full  object-scale-down lg:object-cover  lg:h-48 rounded-2xl">
+                            alt="Just a flower" class="w-full object-scale-down md:object-cover lg:object-cover  rounded-2xl">
                     </div>
                     <div class="flex-auto ml-3 justify-evenly py-2">
                         <div class="flex flex-wrap ">

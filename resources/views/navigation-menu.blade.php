@@ -27,6 +27,12 @@
                     <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
                         {{ __('My Posts') }}
                     </x-jet-nav-link>
+                    
+                    @can('viewAny', auth()->user())
+                    <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.create')">
+		                {{ __('Manage Users') }}
+		            </x-jet-nav-link>
+					@endcan
                 </div>
             </div>
 
@@ -165,6 +171,12 @@
             <x-jet-responsive-nav-link href="{{ route('posts.index') }}">
                 {{ __('My Posts') }}
             </x-jet-responsive-nav-link>
+            
+            @can('viewAny', auth()->user())
+            <x-jet-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.create')">
+                {{ __('Manage Users') }}
+            </x-jet-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->

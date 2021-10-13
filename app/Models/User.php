@@ -48,6 +48,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
+	    'is_banned' => 'boolean',
+        'is_private' => 'boolean',
         'email_verified_at' => 'datetime',
     ];
 
@@ -83,5 +85,10 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+    
+    public function isAdmin()
+    {
+    	return $this->role_id === 2;
     }
 }

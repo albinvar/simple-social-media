@@ -1,4 +1,4 @@
-<div class="flex flex-col mx-6 my-6 md:my-12 lg:mx-56">
+<div class="flex flex-col m-6 sm:m-3 md:my-12 lg:mx-56">
             <div class="bg-white shadow-md  rounded-3xl p-4">
                 <div class="flex-none">
                     <div class="h-full w-full  mb-3 filter" wire:offline.class="grayscale">
@@ -11,7 +11,7 @@
 						<video controls crossorigin playsinline oncontextmenu="return false;" controlsList="nodownload" class="rounded-lg filter" id="player_{{ $post->id }}">
 			                <!-- Video files -->
 			                <source src="{{ url('/storage/' . $media->path) }}" type="video/mp4" size="576">
-			
+
 			                <!-- Fallback for browsers that don't support the <video> element -->
 			                <a href="{{ url('/storage/' . $media->path) }}" download>Download</a>
 			            </video>
@@ -44,22 +44,22 @@
                                 clip-rule="evenodd"
                               ></path>
                             </svg>
-                          </button> 
+                          </button>
                          @endcan
                         <div class="flex flex-wrap ">
-                        	
+
                             <div class="w-full flex-none mb-2 text-xs text-blue-700 font-medium" wire:offline.class.remove="text-blue-700" wire:offline.class="text-gray-400">
                             	<a href="{{ route('profile', ['username' => $post->user->username]) }}">
                             	<img class="inline-block object-cover w-8 h-8 mr-1 text-white rounded-full shadow-sm cursor-pointer" wire:offline.class="filter grayscale" src="{{ $post->user->profile_photo_url }}" alt="{{ $post->user->name }}" />
                                 Posted by {{ '@' . $post->user->username }}
                                 </a>
                             </div>
-                            
+
                             <h2 class="flex-auto text-lg font-medium">{{ $post->title }}</h2>
                         </div>
-                        
+
                           <p class="mt-3">{{ $post->body }}</p>
-                          
+
                         <div class="flex py-4  text-sm text-gray-600">
                             <div class="flex-1 inline-flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none"

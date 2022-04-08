@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -26,7 +27,7 @@ class PostFactory extends Factory
             'location' => $this->faker->streetName(),
             'body' => $this->faker->sentence(),
             'user_id' => function () {
-                return \App\Models\User::factory()->create()->id;
+                return User::factory()->create()->id;
             },
         ];
     }

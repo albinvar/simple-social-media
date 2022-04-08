@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePostRequest;
 use App\Models\Post;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -11,9 +14,9 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function index()
+    public function index(): View|Factory|Application
     {
         return view('post.manage');
     }
@@ -21,9 +24,9 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function followers()
+    public function followers(): Application|Factory|View
     {
         return view('post.followers');
     }
@@ -31,9 +34,9 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function create()
+    public function create(): View|Factory|Application
     {
         return view('post.create');
     }
@@ -41,33 +44,33 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreatePostRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function store(CreatePostRequest $request)
+    public function store(CreatePostRequest $request): void
     {
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param Post $post
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function show(Post $post)
+    public function show(Post $post): void
     {
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param Post $post
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function edit(Post $post)
+    public function edit(Post $post): View|Factory|Application
     {
         return view('post.edit', ['post' => $post]);
     }
@@ -75,23 +78,23 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
+     * @param Request $request
+     * @param Post $post
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Post $post): void
     {
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post  $post
+     * @param Post $post
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post): void
     {
     }
 }

@@ -66,11 +66,15 @@ class Create extends Component
         return redirect('home');
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('livewire.posts.create');
     }
 
+    /**
+     * @param $post
+     * @return bool|void
+     */
     private function storeFiles($post)
     {
         if (empty($this->file)) {
@@ -81,14 +85,14 @@ class Create extends Component
 
         $isImage = preg_match('/^.*\.(png|jpg|gif)$/i', $path);
 
-        $media = Media::create([
+        Media::create([
             'post_id' => $post->id,
             'path' => $path,
             'is_image' => $isImage,
         ]);
     }
 
-    private function getIp()
+    private function getIp(): ?string
     {
         foreach (['HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR'] as $key) {
             if (array_key_exists($key, $_SERVER) === true) {

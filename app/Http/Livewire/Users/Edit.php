@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Users;
 
+use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -67,7 +68,7 @@ class Edit extends Component
         try {
             $this->user->update();
             return redirect()->route('users.index');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->back();
         }
     }

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 
@@ -42,7 +43,7 @@ class CleanTemporaryUploads extends Command
             $file = new Filesystem();
             $file->cleanDirectory(storage_path('app/livewire-tmp'));
             $this->comment('Temporary uploads cleared successfully');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->error('Error encountered -> ' . $e->getMessage());
             return 0;
         }

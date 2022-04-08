@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
 use Auth;
+use Exception;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -119,7 +120,7 @@ class View extends Component
             try {
                 $post->delete();
                 session()->flash('success', 'Post deleted successfully');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 session()->flash('error', 'Cannot delete post');
             }
         } else {

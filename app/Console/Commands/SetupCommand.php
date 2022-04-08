@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Exception;
 use Illuminate\Console\Command;
 
 class SetupCommand extends Command
@@ -44,7 +45,7 @@ class SetupCommand extends Command
         $this->comment('Setting Up Storage');
         try {
             $this->callSilently('storage:link');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->newline();
             $this->error('Error encountered');
         }

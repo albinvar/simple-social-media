@@ -14,7 +14,7 @@ class AddIsPrivateToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_private')->nullable();
+            $table->boolean('is_private')->default(1);
         });
     }
 

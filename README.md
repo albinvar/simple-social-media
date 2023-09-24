@@ -2,6 +2,10 @@
 
 <h1 align="center">Simple Social Media</h1>
 
+The [project demo](https://social.w3x.live) is hosted for FREE 💝 on [Wexron Hosting](https://wexronhosting.com).
+
+![https://wexronhosting.com/_nuxt/wex.76a224d8.svg](https://wexronhosting.com/_nuxt/wex.76a224d8.svg)
+
 ## Table of Contents 
 - [Introduction](#introduction)
 - [Installation](#installation)

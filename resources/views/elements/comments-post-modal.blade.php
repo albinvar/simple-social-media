@@ -48,11 +48,13 @@
                   </div>
                   <div class="flex justify-start items-center text-xs w-full">
                     <div class="font-semibold text-gray-700 px-2 flex items-center justify-center space-x-1">
+                      @if(auth()->id() !== $comment->user_id)
                       <a href="#" class="hover:underline">
                         <small>Like</small>
                       </a>
                     <small class="self-center">.</small>
-                      <button class="" wire:click="deleteComment({{ $post->id }}, {{ $comment->id }})">
+                      @endif
+                      <button class="" wire:click="deleteComment({{ $post->id }}, {{ $comment->id }})" wire:confirm="Are you sure you want to delete this comment?">
                         <small>Delete</small>
                       </button>
                     <small class="self-center">.</small>
